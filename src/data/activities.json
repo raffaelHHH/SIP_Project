@@ -1,0 +1,306 @@
+[
+  {
+    "id": "leaf-colour-hunt", "icon": "🍃",
+    "title": { "en": "Leaf colour hunt", "zh": "找树叶颜色" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["nature", "thinking"], "needs": null,
+    "places": ["park", "garden", "playground"],
+    "steps": [
+      { "icon": "🔍", "text": { "en": "Find leaves on the ground", "zh": "在地上找树叶" } },
+      { "icon": "🎨", "text": { "en": "Find a green, a yellow and a brown one", "zh": "找绿色、黄色和咖啡色的叶子" } },
+      { "icon": "📏", "text": { "en": "Line them up, light to dark", "zh": "从浅到深排成一排" } },
+      { "icon": "🌳", "text": { "en": "Put them back under a tree", "zh": "把叶子放回树下" } }
+    ]
+  },
+  {
+    "id": "shadow-tracing", "icon": "☀️",
+    "title": { "en": "Shadow tracing", "zh": "描影子" },
+    "ages": ["5-8", "9-12"], "minutes": 30, "skills": ["thinking", "nature"],
+    "needs": { "en": "Chalk, or a stick on sand", "zh": "粉笔，或在沙上用树枝" },
+    "places": ["playground", "park", "cc"],
+    "steps": [
+      { "icon": "🧍", "text": { "en": "Stand in the sun", "zh": "站在阳光下" } },
+      { "icon": "✏️", "text": { "en": "Trace your child's shadow", "zh": "描出孩子的影子" } },
+      { "icon": "⏰", "text": { "en": "Come back after 20 minutes", "zh": "20分钟后再回来" } },
+      { "icon": "🤔", "text": { "en": "Ask: why did the shadow move?", "zh": "问：影子为什么会动？" } }
+    ]
+  },
+  {
+    "id": "lamp-post-steps", "icon": "🔢",
+    "title": { "en": "Count steps between lamp posts", "zh": "数路灯之间的步数" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["thinking", "motor"], "needs": null,
+    "places": ["any"],
+    "steps": [
+      { "icon": "💡", "text": { "en": "Pick two lamp posts", "zh": "选两根路灯柱" } },
+      { "icon": "🤔", "text": { "en": "Guess: how many steps?", "zh": "猜一猜：要走几步？" } },
+      { "icon": "🚶", "text": { "en": "Walk and count together", "zh": "一起边走边数" } },
+      { "icon": "🦘", "text": { "en": "Now try big jumps. More or fewer?", "zh": "再用大跳试试，多了还是少了？" } }
+    ]
+  },
+  {
+    "id": "bug-spotting", "icon": "🐞",
+    "title": { "en": "Bug spotting", "zh": "找小虫子" },
+    "ages": ["2-4", "5-8", "9-12"], "minutes": 15, "skills": ["nature"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🌿", "text": { "en": "Look under leaves and in grass", "zh": "看看叶子下面和草丛里" } },
+      { "icon": "🐜", "text": { "en": "Count ants. Spot a butterfly", "zh": "数蚂蚁，找蝴蝶" } },
+      { "icon": "👀", "text": { "en": "Look, but don't touch", "zh": "只看，不要摸" } },
+      { "icon": "💬", "text": { "en": "Talk about its colour and legs", "zh": "说说它的颜色和脚" } }
+    ]
+  },
+  {
+    "id": "playground-obstacle", "icon": "🧗",
+    "title": { "en": "Playground obstacle course", "zh": "游乐场障碍赛" },
+    "ages": ["5-8", "9-12"], "minutes": 30, "skills": ["motor", "social"], "needs": null,
+    "places": ["playground"],
+    "steps": [
+      { "icon": "🗺️", "text": { "en": "Plan a route: climb, slide, balance", "zh": "定路线：爬、滑、走平衡" } },
+      { "icon": "⏱️", "text": { "en": "Count while your child does it", "zh": "孩子完成时帮忙数秒" } },
+      { "icon": "🔄", "text": { "en": "Let your child plan the next one", "zh": "让孩子设计下一条路线" } },
+      { "icon": "👏", "text": { "en": "Cheer for every try!", "zh": "每次都为孩子加油！" } }
+    ]
+  },
+  {
+    "id": "cloud-stories", "icon": "☁️",
+    "title": { "en": "Cloud shape stories", "zh": "云朵故事" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["language", "thinking"], "needs": null,
+    "places": ["park", "garden", "playground"],
+    "steps": [
+      { "icon": "👆", "text": { "en": "Sit and look up at the clouds", "zh": "坐下来看天上的云" } },
+      { "icon": "🐘", "text": { "en": "What shape do you see?", "zh": "你看到什么形状？" } },
+      { "icon": "📖", "text": { "en": "Make up a story about it", "zh": "为它编一个故事" } },
+      { "icon": "🔁", "text": { "en": "Take turns adding one line", "zh": "轮流加一句话" } }
+    ]
+  },
+  {
+    "id": "nature-bingo", "icon": "🖐️",
+    "title": { "en": "Nature bingo (5 fingers)", "zh": "大自然宾果（五根手指）" },
+    "ages": ["5-8", "9-12"], "minutes": 30, "skills": ["nature", "thinking"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🌸", "text": { "en": "Find: flower, bird, stone, feather, ant", "zh": "要找：花、鸟、石头、羽毛、蚂蚁" } },
+      { "icon": "🚶", "text": { "en": "Walk slowly and look around", "zh": "慢慢走，四处看" } },
+      { "icon": "✊", "text": { "en": "Fold one finger for each find", "zh": "找到一样，弯下一根手指" } },
+      { "icon": "🎉", "text": { "en": "All 5 fingers down = Bingo!", "zh": "五根手指都弯下 = 宾果！" } }
+    ]
+  },
+  {
+    "id": "rock-sorting", "icon": "📏",
+    "title": { "en": "Sort stones by size", "zh": "按大小排石头" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["thinking", "motor"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "✋", "text": { "en": "Collect 5 small stones", "zh": "捡5颗小石头" } },
+      { "icon": "📏", "text": { "en": "Line up from small to big", "zh": "从小到大排好" } },
+      { "icon": "⚖️", "text": { "en": "Guess which is heaviest, then feel", "zh": "猜哪颗最重，再拿拿看" } },
+      { "icon": "🌱", "text": { "en": "Put them back where you found them", "zh": "放回原来的地方" } }
+    ]
+  },
+  {
+    "id": "i-spy-letters", "icon": "🔤",
+    "title": { "en": "I spy with letters", "zh": "我看到…（字母游戏）" },
+    "ages": ["5-8"], "minutes": 15, "skills": ["language", "social"], "needs": null,
+    "places": ["any"],
+    "steps": [
+      { "icon": "👁️", "text": { "en": "Say: I spy something starting with B", "zh": "说：我看到一个B开头的东西" } },
+      { "icon": "🔍", "text": { "en": "Your child looks and guesses", "zh": "孩子找一找、猜一猜" } },
+      { "icon": "🔠", "text": { "en": "Find letters on signs too", "zh": "也在招牌上找字母" } },
+      { "icon": "🔄", "text": { "en": "Swap: now your child spies", "zh": "交换：轮到孩子出题" } }
+    ]
+  },
+  {
+    "id": "bird-watching", "icon": "🐦",
+    "title": { "en": "Simple bird watching", "zh": "简单观鸟" },
+    "ages": ["5-8", "9-12"], "minutes": 15, "skills": ["nature"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🤫", "text": { "en": "Sit still and be quiet", "zh": "安静地坐好" } },
+      { "icon": "👂", "text": { "en": "How many bird songs can you hear?", "zh": "听到几种鸟叫声？" } },
+      { "icon": "🐦", "text": { "en": "Spot a bird. What colour is it?", "zh": "找到一只鸟，它是什么颜色？" } },
+      { "icon": "✋", "text": { "en": "Count birds on your fingers", "zh": "用手指数鸟" } }
+    ]
+  },
+  {
+    "id": "simon-says", "icon": "🙋",
+    "title": { "en": "Simon says", "zh": "老师说" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["motor", "language", "social"], "needs": null,
+    "places": ["any"],
+    "steps": [
+      { "icon": "🗣️", "text": { "en": "Say: Simon says touch your nose", "zh": "说：老师说摸鼻子" } },
+      { "icon": "🦶", "text": { "en": "Add moves: hop, spin, wave", "zh": "加动作：跳、转圈、挥手" } },
+      { "icon": "😄", "text": { "en": "No 'Simon says'? Don't move!", "zh": "没说“老师说”就不要动！" } },
+      { "icon": "🔄", "text": { "en": "Let your child be Simon", "zh": "让孩子当老师" } }
+    ]
+  },
+  {
+    "id": "hopscotch", "icon": "🦘",
+    "title": { "en": "Hopscotch", "zh": "跳房子" },
+    "ages": ["5-8", "9-12"], "minutes": 15, "skills": ["motor", "thinking"],
+    "needs": { "en": "Chalk, or sticks for lines", "zh": "粉笔，或用树枝画线" },
+    "places": ["playground", "cc", "park"],
+    "steps": [
+      { "icon": "✏️", "text": { "en": "Draw 8 boxes with numbers", "zh": "画8个格子，写上数字" } },
+      { "icon": "⚪", "text": { "en": "Throw a small stone into box 1", "zh": "把小石头丢进第1格" } },
+      { "icon": "🦶", "text": { "en": "Hop over it to the end and back", "zh": "跳过它，到尽头再跳回来" } },
+      { "icon": "➕", "text": { "en": "Next turn, throw to box 2", "zh": "下一轮丢到第2格" } }
+    ]
+  },
+  {
+    "id": "sound-map", "icon": "👂",
+    "title": { "en": "Sound detective", "zh": "声音侦探" },
+    "ages": ["5-8", "9-12"], "minutes": 15, "skills": ["nature", "language"], "needs": null,
+    "places": ["any"],
+    "steps": [
+      { "icon": "😌", "text": { "en": "Sit down and close your eyes", "zh": "坐下，闭上眼睛" } },
+      { "icon": "✋", "text": { "en": "Count sounds on your fingers", "zh": "用手指数听到的声音" } },
+      { "icon": "🐦", "text": { "en": "Nature sound or people sound?", "zh": "是大自然的声音还是人的声音？" } },
+      { "icon": "💬", "text": { "en": "Tell each other what you heard", "zh": "互相说说听到了什么" } }
+    ]
+  },
+  {
+    "id": "shape-hunt", "icon": "🔺",
+    "title": { "en": "Shape hunt", "zh": "找形状" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["thinking", "language"], "needs": null,
+    "places": ["any"],
+    "steps": [
+      { "icon": "⭕", "text": { "en": "Find something round", "zh": "找一个圆形的东西" } },
+      { "icon": "⬜", "text": { "en": "Now find a square", "zh": "再找一个正方形" } },
+      { "icon": "🔺", "text": { "en": "Can you find a triangle?", "zh": "你能找到三角形吗？" } },
+      { "icon": "🙌", "text": { "en": "Make the shapes with your hands", "zh": "用手做出这些形状" } }
+    ]
+  },
+  {
+    "id": "tree-measure", "icon": "🌳",
+    "title": { "en": "Hug and measure a tree", "zh": "抱抱树、量量树" },
+    "ages": ["5-8", "9-12"], "minutes": 15, "skills": ["nature", "thinking"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🤗", "text": { "en": "Hug a tree. Do your hands meet?", "zh": "抱住一棵树，手碰得到吗？" } },
+      { "icon": "👨‍👧", "text": { "en": "Try together, holding hands", "zh": "一起牵手试试" } },
+      { "icon": "🌲", "text": { "en": "Find a thinner and a fatter tree", "zh": "找一棵更细的和更粗的树" } },
+      { "icon": "🍂", "text": { "en": "Feel the bark. Rough or smooth?", "zh": "摸树皮，粗还是滑？" } }
+    ]
+  },
+  {
+    "id": "red-light-green-light", "icon": "🚦",
+    "title": { "en": "Red light, green light", "zh": "红灯绿灯" },
+    "ages": ["2-4", "5-8", "9-12"], "minutes": 15, "skills": ["motor", "social"], "needs": null,
+    "places": ["playground", "park", "cc"],
+    "steps": [
+      { "icon": "🧍", "text": { "en": "You stand far away", "zh": "你站在远处" } },
+      { "icon": "🟢", "text": { "en": "Green light: child walks to you", "zh": "绿灯：孩子向你走来" } },
+      { "icon": "🔴", "text": { "en": "Red light: freeze like a statue!", "zh": "红灯：像雕像一样不动！" } },
+      { "icon": "🏁", "text": { "en": "Reach you? Swap roles", "zh": "走到你身边？交换角色" } }
+    ]
+  },
+  {
+    "id": "story-walk", "icon": "📖",
+    "title": { "en": "Read and act it out", "zh": "读故事、演故事" },
+    "ages": ["2-4", "5-8"], "minutes": 30, "skills": ["language", "social"],
+    "needs": { "en": "A free library book", "zh": "一本免费借的图书馆书" },
+    "places": ["library", "park", "garden"],
+    "steps": [
+      { "icon": "📚", "text": { "en": "Borrow a picture book (free)", "zh": "免费借一本图画书" } },
+      { "icon": "🌳", "text": { "en": "Read it outside in the shade", "zh": "在外面的树荫下读" } },
+      { "icon": "🎭", "text": { "en": "Act out the story together", "zh": "一起把故事演出来" } },
+      { "icon": "❓", "text": { "en": "Ask: what happens next?", "zh": "问：接下来会怎样？" } }
+    ]
+  },
+  {
+    "id": "flower-colour-count", "icon": "🌺",
+    "title": { "en": "Count flowers by colour", "zh": "按颜色数花" },
+    "ages": ["2-4"], "minutes": 15, "skills": ["thinking", "nature"], "needs": null,
+    "places": ["garden", "park"],
+    "steps": [
+      { "icon": "🌸", "text": { "en": "Find flowers together", "zh": "一起找花" } },
+      { "icon": "🔴", "text": { "en": "How many red ones?", "zh": "有几朵红色的？" } },
+      { "icon": "🟡", "text": { "en": "How many yellow ones?", "zh": "有几朵黄色的？" } },
+      { "icon": "🙅", "text": { "en": "Look and smell, don't pick", "zh": "看一看、闻一闻，不要摘" } }
+    ]
+  },
+  {
+    "id": "nature-art", "icon": "🎨",
+    "title": { "en": "Nature art on the ground", "zh": "地上的大自然画" },
+    "ages": ["5-8", "9-12"], "minutes": 30, "skills": ["nature", "thinking"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🍂", "text": { "en": "Collect fallen leaves, twigs, seeds", "zh": "捡落叶、树枝、种子" } },
+      { "icon": "😀", "text": { "en": "Make a face or animal on the ground", "zh": "在地上拼一张脸或一只动物" } },
+      { "icon": "📷", "text": { "en": "Take a photo of it", "zh": "拍张照片" } },
+      { "icon": "🌱", "text": { "en": "Leave it for others to enjoy", "zh": "留给别人欣赏" } }
+    ]
+  },
+  {
+    "id": "balance-walk", "icon": "🤸",
+    "title": { "en": "Balance walk", "zh": "走平衡" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["motor"], "needs": null,
+    "places": ["playground", "park"],
+    "steps": [
+      { "icon": "➖", "text": { "en": "Find a line or low edge (not near roads)", "zh": "找一条线或矮边（远离马路）" } },
+      { "icon": "🙆", "text": { "en": "Walk on it, arms out wide", "zh": "张开双臂走上去" } },
+      { "icon": "🔙", "text": { "en": "Try walking backwards", "zh": "试试倒着走" } },
+      { "icon": "🤝", "text": { "en": "Hold hands if needed", "zh": "需要时牵着手" } }
+    ]
+  },
+  {
+    "id": "animal-walks", "icon": "🐸",
+    "title": { "en": "Animal walks", "zh": "学动物走路" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["motor", "language"], "needs": null,
+    "places": ["playground", "park", "garden", "cc"],
+    "steps": [
+      { "icon": "🦀", "text": { "en": "Crab walk sideways", "zh": "像螃蟹一样横着走" } },
+      { "icon": "🐻", "text": { "en": "Bear crawl on hands and feet", "zh": "像熊一样手脚着地爬" } },
+      { "icon": "🐸", "text": { "en": "Frog jump!", "zh": "青蛙跳！" } },
+      { "icon": "🗣️", "text": { "en": "Your child picks the next animal", "zh": "让孩子选下一个动物" } }
+    ]
+  },
+  {
+    "id": "map-maker", "icon": "🗺️",
+    "title": { "en": "Make a map home", "zh": "画一张回家的地图" },
+    "ages": ["9-12"], "minutes": 30, "skills": ["thinking", "language"],
+    "needs": { "en": "Paper and pen (optional)", "zh": "纸和笔（可选）" },
+    "places": ["any"],
+    "steps": [
+      { "icon": "🚶", "text": { "en": "Walk to the spot together", "zh": "一起走到这里" } },
+      { "icon": "🏢", "text": { "en": "Notice landmarks on the way", "zh": "注意路上的地标" } },
+      { "icon": "✏️", "text": { "en": "Draw the route home", "zh": "画出回家的路" } },
+      { "icon": "🧭", "text": { "en": "Your child leads the way back", "zh": "让孩子带路回家" } }
+    ]
+  },
+  {
+    "id": "make-a-friend", "icon": "🤝",
+    "title": { "en": "Say hello, make a friend", "zh": "打招呼，交朋友" },
+    "ages": ["2-4", "5-8"], "minutes": 15, "skills": ["social", "language"], "needs": null,
+    "places": ["playground", "cc", "library"],
+    "steps": [
+      { "icon": "👋", "text": { "en": "Practise: Hi, my name is…", "zh": "练习说：你好，我叫……" } },
+      { "icon": "🎠", "text": { "en": "Say hi to a child at the playground", "zh": "向游乐场的小朋友问好" } },
+      { "icon": "🔄", "text": { "en": "Take turns on the slide or swing", "zh": "轮流玩滑梯或秋千" } },
+      { "icon": "💬", "text": { "en": "At home: what was their name?", "zh": "回家问：他们叫什么名字？" } }
+    ]
+  },
+  {
+    "id": "heartbeat-run", "icon": "❤️",
+    "title": { "en": "Heartbeat science", "zh": "心跳小实验" },
+    "ages": ["9-12"], "minutes": 15, "skills": ["thinking", "motor"], "needs": null,
+    "places": ["playground", "park", "cc"],
+    "steps": [
+      { "icon": "✋", "text": { "en": "Feel your heartbeat on your neck", "zh": "在脖子上摸心跳" } },
+      { "icon": "🔢", "text": { "en": "Count beats while you count to 15", "zh": "数到15，同时数心跳" } },
+      { "icon": "🏃", "text": { "en": "Run or jump for 1 minute", "zh": "跑或跳1分钟" } },
+      { "icon": "🤔", "text": { "en": "Count again. Why is it faster?", "zh": "再数一次。为什么变快了？" } }
+    ]
+  },
+  {
+    "id": "tree-name-hunt", "icon": "🏷️",
+    "title": { "en": "Tree name tag hunt", "zh": "找树的名牌" },
+    "ages": ["9-12"], "minutes": 30, "skills": ["nature", "language"], "needs": null,
+    "places": ["park", "garden"],
+    "steps": [
+      { "icon": "🔍", "text": { "en": "Look for name tags on trees", "zh": "找树上的名牌" } },
+      { "icon": "📖", "text": { "en": "Read the name out loud", "zh": "大声读出名字" } },
+      { "icon": "🍃", "text": { "en": "Compare the leaves of two trees", "zh": "比较两棵树的叶子" } },
+      { "icon": "🏆", "text": { "en": "Find the longest tree name", "zh": "找名字最长的树" } }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+[
+  { "id": "nlb", "icon": "📚", "name": { "en": "Public libraries (NLB)", "zh": "公共图书馆（国家图书馆管理局）" }, "desc": { "en": "Free books and storytelling", "zh": "免费借书、听故事" }, "url": "https://www.nlb.gov.sg" },
+  { "id": "nparks", "icon": "🌳", "name": { "en": "Parks (NParks)", "zh": "公园（国家公园局）" }, "desc": { "en": "Find parks and free nature walks", "zh": "找公园和免费自然导览" }, "url": "https://www.nparks.gov.sg" },
+  { "id": "activesg", "icon": "⚽", "name": { "en": "ActiveSG", "zh": "ActiveSG 活力新加坡" }, "desc": { "en": "Sports for kids, some free", "zh": "儿童运动，部分免费" }, "url": "https://www.activesgcircle.gov.sg" },
+  { "id": "onepa", "icon": "🏠", "name": { "en": "Community Clubs (onePA)", "zh": "民众俱乐部（onePA）" }, "desc": { "en": "Events near you", "zh": "附近的活动" }, "url": "https://www.onepa.gov.sg" }
+]
