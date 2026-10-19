@@ -1,0 +1,80 @@
+.progress-card {
+  background: linear-gradient(135deg, var(--green-700), var(--green-500));
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.progress-msg {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.progress-streak {
+  margin: 8px 0 0;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.badge-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.shelf-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 10px 4px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 2px dashed var(--line);
+  font-weight: 600;
+}
+
+.shelf-item .shelf-icon {
+  font-size: 2.2rem;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+.shelf-item.earned {
+  border: 2px solid var(--yellow-400);
+  background: var(--yellow-100);
+}
+
+.shelf-item.earned .shelf-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.done-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.done-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-weight: 600;
+}
+
+.done-list li > span:first-child {
+  font-size: 1.5rem;
+}

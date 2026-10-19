@@ -1,0 +1,122 @@
+.how {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.how-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 14px 6px 12px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.how-num {
+  position: absolute;
+  top: 6px;
+  left: 8px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green-700);
+  color: #fff;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.how-icon {
+  font-size: 2.6rem;
+}
+
+.setting-label {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.smileys {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.smiley {
+  width: 56px;
+  height: 56px;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.smiley[aria-checked='true'] {
+  border-color: var(--green-700);
+  background: var(--yellow-100);
+  transform: scale(1.1);
+}
+
+.textarea {
+  width: 100%;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: var(--cream);
+  resize: vertical;
+}
+
+.thanks {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 12px 0;
+}
+
+.version {
+  display: block;
+  margin: 24px auto 0;
+  min-height: var(--tap);
+  padding: 8px 16px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.stat-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.stat-table th,
+.stat-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-table td {
+  text-align: right;
+  font-weight: 800;
+  font-size: 1.15rem;
+}

@@ -1,0 +1,9 @@
+[
+  { "id": "bukit-merah", "name": { "en": "Bukit Merah", "zh": "红山" }, "lat": 1.2835, "lng": 103.8200 },
+  { "id": "jalan-kukoh", "name": { "en": "Jalan Kukoh / Chinatown", "zh": "惹兰古果 / 牛车水" }, "lat": 1.2867, "lng": 103.8395 },
+  { "id": "toa-payoh", "name": { "en": "Toa Payoh", "zh": "大巴窑" }, "lat": 1.3330, "lng": 103.8480 },
+  { "id": "jurong-west", "name": { "en": "Jurong West", "zh": "裕廊西" }, "lat": 1.3400, "lng": 103.7060 },
+  { "id": "woodlands", "name": { "en": "Woodlands", "zh": "兀兰" }, "lat": 1.4365, "lng": 103.7865 },
+  { "id": "ang-mo-kio", "name": { "en": "Ang Mo Kio", "zh": "宏茂桥" }, "lat": 1.3700, "lng": 103.8495 },
+  { "id": "bedok", "name": { "en": "Bedok", "zh": "勿洛" }, "lat": 1.3240, "lng": 103.9300 }
+]
