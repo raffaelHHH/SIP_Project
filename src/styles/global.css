@@ -296,8 +296,8 @@ h2 {
   background: none;
   font-weight: 700;
   color: var(--green-900);
-  padding: 0 10px;
-  white-space: nowrap;
+  padding: 4px 8px;
+  line-height: 1.15;
 }
 
 .segment button[aria-pressed='true'] {
