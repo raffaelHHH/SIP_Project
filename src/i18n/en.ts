@@ -146,6 +146,7 @@ const en = {
   statReturnVisits: 'Return visits',
   statOpens: 'Total app opens',
   statFeedback: 'Feedback entries',
+  statAvgRating: 'Average rating',
   statFirstUsed: 'First used',
   exportStats: 'Export stats (CSV)',
   exportFeedbackCsv: 'Export feedback (CSV)',

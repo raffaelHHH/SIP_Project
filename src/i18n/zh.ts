@@ -135,6 +135,7 @@ const zh: Strings = {
   statReturnVisits: '回访次数',
   statOpens: '打开应用总次数',
   statFeedback: '反馈数量',
+  statAvgRating: '平均评分',
   statFirstUsed: '首次使用',
   exportStats: '导出数据（CSV）',
   exportFeedbackCsv: '导出反馈（CSV）',

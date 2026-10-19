@@ -27,6 +27,8 @@ export interface FeedbackEntry {
 }
 
 export interface Stats {
+  /** Random anonymous id so the team can combine exports from several test phones. */
+  deviceId: string;
   spotViews: number;
   goThereTaps: number;
   activitiesDone: number;
@@ -57,7 +59,7 @@ function initialState(): State {
     saved: { spots: [], activities: [] },
     log: [],
     feedback: [],
-    stats: { spotViews: 0, goThereTaps: 0, activitiesDone: 0, opens: 0, days: [], firstUsed: null },
+    stats: { deviceId: '', spotViews: 0, goThereTaps: 0, activitiesDone: 0, opens: 0, days: [], firstUsed: null },
   };
 }
 
@@ -171,6 +173,7 @@ export function countAppOpen(): void {
     ...s,
     stats: {
       ...s.stats,
+      deviceId: s.stats.deviceId || Math.random().toString(36).slice(2, 10),
       opens: s.stats.opens + 1,
       days: s.stats.days.includes(today) ? s.stats.days : [...s.stats.days, today],
       firstUsed: s.stats.firstUsed ?? today,
