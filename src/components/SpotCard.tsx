@@ -4,6 +4,9 @@ import { useStore } from '../lib/store';
 import { navigate } from '../router';
 import type { Spot } from '../types';
 
+// Beyond this, a walking time isn't useful (they'd take a bus), so show the area name instead.
+const MAX_WALK = 45;
+
 export default function SpotCard({ spot, walk }: { spot: Spot; walk: number | null }) {
   const { t, p } = useT();
   const isSaved = useStore((s) => s.saved.spots.includes(spot.id));
@@ -19,7 +22,7 @@ export default function SpotCard({ spot, walk }: { spot: Spot; walk: number | nu
           {p(spot.name)} {isSaved && <span aria-label={t('saved')}>❤️</span>}
         </span>
         <span className="card-meta" style={{ display: 'block' }}>
-          {walk !== null ? <span className="walk">🚶 {t('minWalk', { n: walk })}</span> : area && p(area.name)}
+          {walk !== null && walk <= MAX_WALK ? <span className="walk">🚶 {t('minWalk', { n: walk })}</span> : area && <>🚌 {p(area.name)}</>}
           {' · '}
           {t(`cat_${spot.category}`)}
         </span>

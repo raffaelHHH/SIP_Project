@@ -54,7 +54,7 @@ export default function MapView({ items, origin }: { items: MapItem[]; origin: L
         )}
         {items.map(({ spot, walk }) => (
           <Marker key={spot.id} position={[spot.lat, spot.lng]} icon={pinFor(spot.category)}>
-            <Popup>
+            <Popup autoPanPaddingTopLeft={[56, 16]} autoPanPaddingBottomRight={[16, 16]}>
               <div className="map-popup">
                 <strong>{p(spot.name)}</strong>
                 {walk !== null && <div>🚶 {t('minWalk', { n: walk })}</div>}

@@ -91,7 +91,7 @@ export default function Nearby() {
 
       <div style={{ marginBottom: 8 }}>
         <div style={{ fontWeight: 700, marginBottom: 4 }}>⏱ {t('iHave')}</div>
-        <div className="segment" role="group" aria-label={t('iHave')}>
+        <div className="segment nowrap" role="group" aria-label={t('iHave')}>
           {([15, 30, 60, null] as Minutes[]).map((m) => (
             <button key={m ?? 'any'} aria-pressed={ui.minutes === m} onClick={() => set({ minutes: m })}>
               {m ? t('minShort', { n: m }) : t('anyTime')}
@@ -119,7 +119,7 @@ export default function Nearby() {
           <h2>✨ {t('tryThese', { n: ui.minutes! })}</h2>
           <div className="chips" style={{ alignItems: 'stretch' }}>
             {quickActivities.map((a) => (
-              <div key={a.id} style={{ flex: 'none', width: 260 }}>
+              <div key={a.id} className="quick-card">
                 <ActivityCard activity={a} />
               </div>
             ))}

@@ -40,7 +40,7 @@ export default function Onboarding() {
       {step === 0 && (
         <section className="ob-step">
           <div className="ob-hero" aria-hidden="true">
-            🌳👨‍👧☀️
+            🌳🧒☀️
           </div>
           <h1>{t('obWelcome')}</h1>
           <p className="ob-tagline">{t('obTagline')}</p>

@@ -38,7 +38,7 @@ const zh: Strings = {
   listView: '列表',
   mapView: '地图',
   iHave: '我有',
-  minShort: '{n} 分钟',
+  minShort: '{n}分钟',
   anyTime: '不限',
   minWalk: '步行约 {n} 分钟',
   noSpots: '没有符合的地点，请减少筛选。',
