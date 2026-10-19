@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { LatLng } from '../lib/geo';
 import { neighbourhoodById } from '../lib/data';
 import { getState, setPrefs, useStore } from '../lib/store';
@@ -34,7 +34,11 @@ export function useOrigin(): { origin: LatLng | null; mode: string | null } {
       });
   }, [mode]);
 
-  if (mode === 'gps') return { origin: lastPosition, mode };
-  const n = mode ? neighbourhoodById.get(mode) : undefined;
-  return { origin: n ? { lat: n.lat, lng: n.lng } : null, mode };
+  // Memoised so effects that depend on `origin` don't re-run on every render.
+  const origin = useMemo(() => {
+    if (mode === 'gps') return lastPosition;
+    const n = mode ? neighbourhoodById.get(mode) : undefined;
+    return n ? { lat: n.lat, lng: n.lng } : null;
+  }, [mode, lastPosition]);
+  return { origin, mode };
 }
