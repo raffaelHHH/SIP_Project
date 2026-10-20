@@ -1,0 +1,105 @@
+.review-avg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  color: var(--orange-600);
+}
+
+.review-avg strong {
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.review-list {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-list li {
+  color: var(--text);
+}
+
+.review-list li > .row > span:first-child {
+  color: var(--orange-600);
+}
+
+.star-picker {
+  display: flex;
+  gap: 4px;
+}
+
+.star-picker button {
+  width: var(--tap);
+  height: var(--tap);
+  border: 0;
+  background: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--line);
+  padding: 0;
+}
+
+.star-picker button.on {
+  color: var(--orange-600);
+}
+
+/* Shared by Account and Suggest place forms */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.input {
+  min-height: var(--tap);
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: var(--cream);
+  font-weight: 400;
+  width: 100%;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--green-700);
+  outline: none;
+}
+
+.form-msg {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--yellow-100);
+  font-weight: 600;
+  margin: 0;
+}
+
+.form-msg.error {
+  background: #fdecea;
+  color: var(--red);
+}
+
+.status-pill {
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 2px 10px;
+  background: var(--yellow-100);
+  white-space: nowrap;
+}
+
+.status-pill.approved {
+  background: var(--green-100);
+  color: var(--green-900);
+}
+
+.status-pill.rejected {
+  background: #eee;
+  color: var(--muted);
+}

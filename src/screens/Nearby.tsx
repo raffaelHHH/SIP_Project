@@ -7,9 +7,10 @@ import SpotCard from '../components/SpotCard';
 import WeatherBanner from '../components/WeatherBanner';
 import { useOrigin } from '../hooks/useOrigin';
 import { useT } from '../i18n';
-import { activities, categories, categoryIcon, featureIcon, neighbourhoodById, spots } from '../lib/data';
+import { activities, categories, categoryIcon, featureIcon, neighbourhoodById, useSpots } from '../lib/data';
 import { walkMinutes } from '../lib/geo';
 import { useStore } from '../lib/store';
+import { backendEnabled } from '../lib/backend';
 import { navigate } from '../router';
 import type { Category } from '../types';
 
@@ -35,6 +36,7 @@ export default function Nearby() {
   const { t, p } = useT();
   const { origin, mode } = useOrigin();
   const ageGroup = useStore((s) => s.prefs.ageGroup);
+  const spots = useSpots();
   const [ui, setUi] = useState<UiState>(savedUi);
   const set = (patch: Partial<UiState>) => setUi((u) => ({ ...u, ...patch }));
 
@@ -49,7 +51,7 @@ export default function Nearby() {
       .filter((s) => !ui.toilet || s.features.includes('toilet'))
       .map((spot) => ({ spot, walk: origin ? walkMinutes(origin, spot) : null }))
       .sort((a, b) => (a.walk ?? 0) - (b.walk ?? 0));
-  }, [ui.cats, ui.sheltered, ui.toilet, origin]);
+  }, [spots, ui.cats, ui.sheltered, ui.toilet, origin]);
 
   // "I have X minutes": only show places close enough. If none, fall back to the 3 nearest.
   const { shown, tooFar } = useMemo(() => {
@@ -164,6 +166,22 @@ export default function Nearby() {
           ))}
           <LoadMore remaining={page.remaining} onMore={page.more} />
         </div>
+      )}
+
+      {backendEnabled && (
+        <button className="card card-btn" style={{ marginTop: 16 }} onClick={() => navigate('/suggest')}>
+          <span className="card-icon" aria-hidden="true">
+            ➕
+          </span>
+          <span className="card-body">
+            <span className="card-title" style={{ display: 'block' }}>
+              {t('suggestPlace')}
+            </span>
+            <span className="card-meta" style={{ display: 'block' }}>
+              {t('suggestHint')}
+            </span>
+          </span>
+        </button>
       )}
     </div>
   );

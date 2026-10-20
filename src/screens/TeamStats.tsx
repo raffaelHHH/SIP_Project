@@ -1,5 +1,7 @@
 import { useT, type StringKey } from '../i18n';
 import { download, toCsv } from '../lib/csv';
+import { backendEnabled } from '../lib/backend';
+import { flush } from '../lib/sync';
 import { monthCount } from '../lib/progress';
 import { resetAll, todayStr, useStore } from '../lib/store';
 import { goBack, navigate } from '../router';
@@ -12,6 +14,7 @@ export default function TeamStats() {
   const stats = useStore((s) => s.stats);
   const log = useStore((s) => s.log);
   const feedback = useStore((s) => s.feedback);
+  const outbox = useStore((s) => s.outbox.length);
 
   const avgRating = feedback.length
     ? (feedback.reduce((n, f) => n + f.rating, 0) / feedback.length).toFixed(1)
@@ -90,6 +93,22 @@ export default function TeamStats() {
           ))}
         </tbody>
       </table>
+
+      <p className="card" style={{ marginTop: 12 }}>
+        {backendEnabled ? (
+          <>
+            ☁️ {t('statSynced', { n: feedback.filter((f) => f.synced).length, total: feedback.length })}
+            <br />⏳ {t('statOutbox', { n: outbox })}
+            {(outbox > 0 || feedback.some((f) => !f.synced)) && (
+              <button className="link-btn" onClick={() => void flush()}>
+                {t('retrySync')}
+              </button>
+            )}
+          </>
+        ) : (
+          <>📵 {t('syncOff')}</>
+        )}
+      </p>
 
       <div className="stack" style={{ marginTop: 16 }}>
         <button className="btn btn-big btn-primary" onClick={exportStats}>

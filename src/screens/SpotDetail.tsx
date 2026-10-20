@@ -3,7 +3,8 @@ import ActivityCard from '../components/ActivityCard';
 import SampleDataNote from '../components/SampleDataNote';
 import { useOrigin } from '../hooks/useOrigin';
 import { useT } from '../i18n';
-import { activitiesForSpot, categoryIcon, featureIcon, spotById } from '../lib/data';
+import { activitiesForSpot, categoryIcon, featureIcon, useSpot } from '../lib/data';
+import SpotReviews from '../components/SpotReviews';
 import { directionsUrl, walkMinutes } from '../lib/geo';
 import { countGoThere, countSpotView, toggleSaved, useStore } from '../lib/store';
 import { goBack } from '../router';
@@ -20,7 +21,7 @@ const heroColour: Record<string, string> = {
 
 export default function SpotDetail({ id }: { id: string }) {
   const { t, p } = useT();
-  const spot = spotById.get(id);
+  const spot = useSpot(id);
   const { origin } = useOrigin();
   const ageGroup = useStore((s) => s.prefs.ageGroup);
   const isSaved = useStore((s) => s.saved.spots.includes(id));
@@ -30,7 +31,7 @@ export default function SpotDetail({ id }: { id: string }) {
   useEffect(() => {
     if (spot && !counted.current) {
       counted.current = true;
-      countSpotView();
+      countSpotView(spot.id);
     }
   }, [spot]);
 
@@ -80,7 +81,7 @@ export default function SpotDetail({ id }: { id: string }) {
           🕒 {t('hours')}: {hours}
         </span>
       </div>
-      <SampleDataNote />
+      {spot.community ? <span className="sample-note">👪 {t('fromParents')}</span> : <SampleDataNote />}
 
       <a
         className="btn btn-big btn-primary"
@@ -88,7 +89,7 @@ export default function SpotDetail({ id }: { id: string }) {
         href={directionsUrl(spot)}
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => countGoThere()}
+        onClick={() => countGoThere(spot.id)}
       >
         🧭 {t('goThere')}
       </a>
@@ -105,6 +106,8 @@ export default function SpotDetail({ id }: { id: string }) {
           ))}
         </div>
       )}
+
+      <SpotReviews spotId={spot.id} />
 
       {suggestions.length > 0 && (
         <>
