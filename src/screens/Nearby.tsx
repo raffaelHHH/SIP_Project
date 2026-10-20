@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import ActivityCard from '../components/ActivityCard';
 import LangToggle from '../components/LangToggle';
+import LoadMore, { useLoadMore } from '../components/LoadMore';
 import SampleDataNote from '../components/SampleDataNote';
 import SpotCard from '../components/SpotCard';
 import WeatherBanner from '../components/WeatherBanner';
@@ -57,6 +58,8 @@ export default function Nearby() {
     if (close.length === 0 && filtered.length > 0) return { shown: filtered.slice(0, 3), tooFar: true };
     return { shown: close, tooFar: false };
   }, [filtered, ui.minutes, origin]);
+
+  const page = useLoadMore(shown, `${ui.cats.join()}|${ui.sheltered}|${ui.toilet}|${ui.minutes}|${ui.view}`);
 
   const quickActivities = useMemo(
     () => (ui.minutes ? activities.filter((a) => a.ages.includes(ageGroup) && a.minutes <= ui.minutes!).slice(0, 6) : []),
@@ -156,9 +159,10 @@ export default function Nearby() {
         </Suspense>
       ) : (
         <div className="stack">
-          {shown.map(({ spot, walk }) => (
+          {page.visible.map(({ spot, walk }) => (
             <SpotCard key={spot.id} spot={spot} walk={walk} />
           ))}
+          <LoadMore remaining={page.remaining} onMore={page.more} />
         </div>
       )}
     </div>

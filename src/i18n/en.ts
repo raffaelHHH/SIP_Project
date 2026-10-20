@@ -52,6 +52,7 @@ const en = {
   sampleData: 'Sample data – please check on site',
   loadingMap: 'Loading map…',
   openSpot: 'Open',
+  showMore: 'Show more ({n})',
 
   // Categories
   cat_playground: 'Playground',

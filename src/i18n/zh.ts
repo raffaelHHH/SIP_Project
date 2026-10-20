@@ -48,6 +48,7 @@ const zh: Strings = {
   sampleData: '示例资料 – 请到现场确认',
   loadingMap: '地图加载中…',
   openSpot: '打开',
+  showMore: '显示更多（{n}）',
 
   cat_playground: '游乐场',
   cat_park: '公园',
