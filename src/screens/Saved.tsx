@@ -2,10 +2,12 @@ import ActivityCard from '../components/ActivityCard';
 import SpotCard from '../components/SpotCard';
 import { useOrigin } from '../hooks/useOrigin';
 import { useT } from '../i18n';
-import { activityById, spotById } from '../lib/data';
+import { activityById, useSpots } from '../lib/data';
 import { walkMinutes } from '../lib/geo';
 import { badges, monthCount, weekStreak } from '../lib/progress';
 import { useStore } from '../lib/store';
+import { backendEnabled } from '../lib/backend';
+import { navigate } from '../router';
 import './saved.css';
 
 export default function Saved() {
@@ -14,11 +16,13 @@ export default function Saved() {
   const saved = useStore((s) => s.saved);
   const log = useStore((s) => s.log);
   const stats = useStore((s) => s.stats);
+  const account = useStore((s) => s.account);
 
   const month = monthCount(log);
   const streak = weekStreak(log);
   const badgeList = badges(log, stats);
-  const savedSpots = saved.spots.map((id) => spotById.get(id)).filter((s) => s !== undefined);
+  const allSpots = useSpots();
+  const savedSpots = saved.spots.map((id) => allSpots.find((s) => s.id === id)).filter((s) => s !== undefined);
   const savedActivities = saved.activities.map((id) => activityById.get(id)).filter((a) => a !== undefined);
   const recent = log.slice(0, 8);
 
@@ -42,6 +46,18 @@ export default function Saved() {
         </p>
         {streak >= 2 && <p className="progress-streak">🔥 {t('weekStreak', { n: streak })}</p>}
       </section>
+
+      {backendEnabled && !account && (
+        <button className="banner" style={{ width: '100%', marginTop: 12, textAlign: 'left' }} onClick={() => navigate('/account')}>
+          <span className="banner-icon" aria-hidden="true">
+            ☁️
+          </span>
+          <span className="banner-text">{t('accountGuestTitle')}</span>
+          <span className="btn btn-primary" style={{ padding: '6px 14px' }}>
+            {t('signIn')}
+          </span>
+        </button>
+      )}
 
       <h2>🏅 {t('badges')}</h2>
       <div className="badge-shelf">

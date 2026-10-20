@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import ActivityCard from '../components/ActivityCard';
 import LangToggle from '../components/LangToggle';
+import LoadMore, { useLoadMore } from '../components/LoadMore';
 import { useT } from '../i18n';
 import { activities, skillIcon, skills } from '../lib/data';
 import { useStore } from '../lib/store';
@@ -24,6 +25,8 @@ export default function Activities() {
         .filter((a) => ui.skills.length === 0 || a.skills.some((s) => ui.skills.includes(s))),
     [ui, ageGroup],
   );
+
+  const page = useLoadMore(list, `${ui.mine}|${ui.skills.join()}`);
 
   const toggleSkill = (s: Skill) =>
     setUi((u) => ({ ...u, skills: u.skills.includes(s) ? u.skills.filter((x) => x !== s) : [...u.skills, s] }));
@@ -53,9 +56,10 @@ export default function Activities() {
       </div>
 
       <div className="stack" style={{ marginTop: 8 }}>
-        {list.map((a) => (
+        {page.visible.map((a) => (
           <ActivityCard key={a.id} activity={a} />
         ))}
+        <LoadMore remaining={page.remaining} onMore={page.more} />
         {list.length === 0 && <p className="empty">{t('noSpots')}</p>}
       </div>
     </div>

@@ -11,12 +11,16 @@ import Saved from './screens/Saved';
 import Help from './screens/Help';
 import TeamStats from './screens/TeamStats';
 import AreaPicker from './screens/AreaPicker';
+import Account from './screens/Account';
+import SuggestPlace from './screens/SuggestPlace';
 
 function route(path: string): { tab: Tab; el: React.ReactNode } {
   let p: Record<string, string> | null;
   if ((p = match('/spot/:id', path))) return { tab: 'nearby', el: <SpotDetail id={p.id} /> };
   if ((p = match('/activity/:id', path))) return { tab: 'activities', el: <ActivityDetail id={p.id} /> };
   if (path === '/area') return { tab: 'nearby', el: <AreaPicker /> };
+  if (path === '/account') return { tab: 'help', el: <Account /> };
+  if (path === '/suggest') return { tab: 'nearby', el: <SuggestPlace /> };
   if (path === '/activities') return { tab: 'activities', el: <Activities /> };
   if (path === '/saved') return { tab: 'saved', el: <Saved /> };
   if (path === '/help') return { tab: 'help', el: <Help /> };

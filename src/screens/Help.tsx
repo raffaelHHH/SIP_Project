@@ -3,6 +3,8 @@ import LangToggle from '../components/LangToggle';
 import { languageOrder, languages, useT, type StringKey } from '../i18n';
 import { ageGroups, ageKey, neighbourhoodById, resources } from '../lib/data';
 import { addFeedback, setPrefs, useStore } from '../lib/store';
+import { backendEnabled } from '../lib/backend';
+import { PrivacyNote } from './Account';
 import { navigate } from '../router';
 import './help.css';
 
@@ -11,6 +13,7 @@ const smileys = ['😞', '🙁', '😐', '🙂', '😄'];
 export default function Help() {
   const { t, p, lang } = useT();
   const prefs = useStore((s) => s.prefs);
+  const account = useStore((s) => s.account);
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');
   const [sent, setSent] = useState(false);
@@ -47,6 +50,22 @@ export default function Help() {
         <h1>❓ {t('navHelp')}</h1>
         <LangToggle />
       </div>
+
+      {backendEnabled && (
+        <button className="card card-btn" style={{ marginBottom: 8 }} onClick={() => navigate('/account')}>
+          <span className="card-icon" aria-hidden="true">
+            👤
+          </span>
+          <span className="card-body">
+            <span className="card-title" style={{ display: 'block' }}>
+              {account ? t('account') : `${t('signIn')} / ${t('createAccount')}`}
+            </span>
+            <span className="card-meta" style={{ display: 'block', overflowWrap: 'anywhere' }}>
+              {account ? account.email : t('accountGuestTitle')}
+            </span>
+          </span>
+        </button>
+      )}
 
       <h2 style={{ marginTop: 4 }}>{t('howToUse')}</h2>
       <ol className="how">
@@ -157,6 +176,8 @@ export default function Help() {
           </>
         )}
       </div>
+
+      {backendEnabled && <PrivacyNote />}
 
       <button className="version" onClick={onVersionTap}>
         {t('version', { v: __APP_VERSION__ })}

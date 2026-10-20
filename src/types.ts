@@ -30,6 +30,8 @@ export interface Spot {
   hours: '24h' | 'check' | Localized;
   features: Feature[];
   verified: boolean;
+  /** Suggested by a parent and approved by the team (comes from the database, not spots.json). */
+  community?: boolean;
 }
 
 export interface ActivityStep {

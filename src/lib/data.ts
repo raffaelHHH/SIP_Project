@@ -1,4 +1,6 @@
+import { useMemo } from 'react';
 import type { Activity, AgeGroup, Category, Feature, Neighbourhood, Resource, Skill, Spot } from '../types';
+import { useStore } from './store';
 import spotsJson from '../data/spots.json';
 import activitiesJson from '../data/activities.json';
 import neighbourhoodsJson from '../data/neighbourhoods.json';
@@ -12,6 +14,17 @@ export const resources = resourcesJson as Resource[];
 export const spotById = new Map(spots.map((s) => [s.id, s]));
 export const activityById = new Map(activities.map((a) => [a.id, a]));
 export const neighbourhoodById = new Map(neighbourhoods.map((n) => [n.id, n]));
+
+/** All places: the team's list plus approved places suggested by parents. */
+export function useSpots(): Spot[] {
+  const community = useStore((s) => s.communitySpots);
+  return useMemo(() => [...spots, ...community], [community]);
+}
+
+export function useSpot(id: string): Spot | undefined {
+  const community = useStore((s) => s.communitySpots);
+  return spotById.get(id) ?? community.find((s) => s.id === id);
+}
 
 export const ageGroups: AgeGroup[] = ['2-4', '5-8', '9-12'];
 export const categories: Category[] = ['playground', 'park', 'garden', 'library', 'cc', 'event'];
