@@ -112,7 +112,9 @@ You get an `https://…vercel.app` link. Every push to `main` redeploys.
 ### Option B: GitHub Pages
 1. Push this repo to GitHub.
 2. In the repo, open **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. Push to `main`. The workflow in `.github/workflows/deploy-pages.yml` builds and publishes the app to `https://<user>.github.io/<repo-name>/`.
+3. Go to the **Actions** tab → **Deploy to GitHub Pages** → **Run workflow**. It builds and publishes the app to `https://<user>.github.io/<repo-name>/`. It's manual-only because the team hosts on Vercel. To deploy on every push instead, add `push: branches: [main]` under `on:` in `.github/workflows/deploy-pages.yml`.
+
+Separately, the **Build check** workflow runs on every push and shows a ❌ on GitHub if a change breaks the build.
 
 The app uses `#/` URLs, so page refreshes work on GitHub Pages with no extra setup.
 

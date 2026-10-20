@@ -1,10 +1,9 @@
-# Deploys the app to GitHub Pages on every push to main.
-# One-time setup: repo Settings → Pages → Source: "GitHub Actions".
+# Optional: publishes the app to GitHub Pages. We host on Vercel, so this only runs
+# when started by hand (Actions tab → "Deploy to GitHub Pages" → Run workflow).
+# Before using it: repo Settings → Pages → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
