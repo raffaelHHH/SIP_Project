@@ -22,7 +22,7 @@ export default function SpotCard({ spot, walk }: { spot: Spot; walk: number | nu
           {p(spot.name)} {isSaved && <span aria-label={t('saved')}>❤️</span>}
         </span>
         <span className="card-meta" style={{ display: 'block' }}>
-          {walk !== null && walk <= MAX_WALK ? <span className="walk">🚶 {t('minWalk', { n: walk })}</span> : area && <>🚌 {p(area.name)}</>}
+          {walk !== null && walk <= MAX_WALK ? <span className="walk">{t('minWalk', { n: walk })}</span> : area && <>{p(area.name)}</>}
           {' · '}
           {t(`cat_${spot.category}`)}
         </span>

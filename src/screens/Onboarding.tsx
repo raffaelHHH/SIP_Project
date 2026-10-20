@@ -39,9 +39,7 @@ export default function Onboarding() {
 
       {step === 0 && (
         <section className="ob-step">
-          <div className="ob-hero" aria-hidden="true">
-            🌳🧒☀️
-          </div>
+          <img className="ob-logo" src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width={96} height={96} />
           <h1>{t('obWelcome')}</h1>
           <p className="ob-tagline">{t('obTagline')}</p>
           <h2>{t('obChooseLang')}</h2>
@@ -66,9 +64,6 @@ export default function Onboarding() {
 
       {step === 1 && (
         <section className="ob-step">
-          <div className="ob-hero" aria-hidden="true">
-            🧒
-          </div>
           <h1>{t('obAgeQ')}</h1>
           <p className="muted">{t('obAgeHint')}</p>
           <div className="stack">
@@ -82,7 +77,7 @@ export default function Onboarding() {
                   setStep(2);
                 }}
               >
-                {g === '2-4' ? '👶' : g === '5-8' ? '🧒' : '👦'} {t(ageKey[g])}
+                {t(ageKey[g])}
               </button>
             ))}
           </div>
@@ -91,9 +86,6 @@ export default function Onboarding() {
 
       {step === 2 && (
         <section className="ob-step">
-          <div className="ob-hero" aria-hidden="true">
-            📍
-          </div>
           <h1>{t('obLocationQ')}</h1>
           {locState !== 'denied' && (
             <button className="btn btn-big btn-primary" onClick={askLocation} disabled={locState === 'asking'}>

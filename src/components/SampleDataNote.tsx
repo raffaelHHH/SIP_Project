@@ -4,7 +4,7 @@ export default function SampleDataNote() {
   const { t } = useT();
   return (
     <span className="sample-note">
-      <span aria-hidden="true">ℹ️</span> {t('sampleData')}
+      {t('sampleData')}
     </span>
   );
 }

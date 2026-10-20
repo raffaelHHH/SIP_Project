@@ -37,14 +37,14 @@ export default function Saved() {
   return (
     <div className="screen">
       <div className="topbar">
-        <h1>❤️ {t('navSaved')}</h1>
+        <h1>{t('navSaved')}</h1>
       </div>
 
       <section className="progress-card">
         <p className="progress-msg">
           {month === 0 ? t('thisMonthZero') : month === 1 ? t('thisMonthOne') : t('thisMonth', { n: month })}
         </p>
-        {streak >= 2 && <p className="progress-streak">🔥 {t('weekStreak', { n: streak })}</p>}
+        {streak >= 2 && <p className="progress-streak">{t('weekStreak', { n: streak })}</p>}
       </section>
 
       {backendEnabled && !account && (
@@ -59,7 +59,7 @@ export default function Saved() {
         </button>
       )}
 
-      <h2>🏅 {t('badges')}</h2>
+      <h2>{t('badges')}</h2>
       <div className="badge-shelf">
         {badgeList.map((b) => (
           <div key={b.id} className={'shelf-item' + (b.earned ? ' earned' : '')}>
@@ -72,7 +72,7 @@ export default function Saved() {
         ))}
       </div>
 
-      <h2>📍 {t('savedSpots')}</h2>
+      <h2>{t('savedSpots')}</h2>
       {savedSpots.length === 0 ? (
         <p className="muted">{t('nothingSaved')}</p>
       ) : (
@@ -83,7 +83,7 @@ export default function Saved() {
         </div>
       )}
 
-      <h2>🧩 {t('savedActivities')}</h2>
+      <h2>{t('savedActivities')}</h2>
       {savedActivities.length === 0 ? (
         <p className="muted">{t('nothingSaved')}</p>
       ) : (
@@ -96,7 +96,7 @@ export default function Saved() {
 
       {recent.length > 0 && (
         <>
-          <h2>✅ {t('recentlyDone')}</h2>
+          <h2>{t('recentlyDone')}</h2>
           <ul className="done-list">
             {recent.map((e, i) => {
               const a = activityById.get(e.activityId);

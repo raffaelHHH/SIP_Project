@@ -46,25 +46,22 @@ export default function ActivityDetail({ id }: { id: string }) {
         </button>
       </div>
 
-      <div className="hero" style={{ background: 'var(--yellow-100)' }} aria-hidden="true">
+      <div className="hero" aria-hidden="true">
         <span>{activity.icon}</span>
       </div>
 
       <h1 style={{ marginTop: 14 }}>{p(activity.title)}</h1>
 
       <div className="tags" style={{ marginTop: 10 }}>
-        <span className="tag">⏱ {t('minShort', { n: activity.minutes })}</span>
+        <span className="tag">{t('minShort', { n: activity.minutes })}</span>
         {activity.ages.map((a) => (
           <span key={a} className="tag">
-            🧒 {t(ageKey[a])}
+            {t(ageKey[a])}
           </span>
         ))}
       </div>
 
       <div className="card" style={{ marginTop: 14, display: 'flex', gap: 12, alignItems: 'center' }}>
-        <span style={{ fontSize: '2rem' }} aria-hidden="true">
-          🎒
-        </span>
         <div>
           <div className="muted small">{t('needs')}</div>
           <strong>{activity.needs ? p(activity.needs) : t('needsNothing')}</strong>

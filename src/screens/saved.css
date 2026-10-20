@@ -1,9 +1,8 @@
 .progress-card {
-  background: linear-gradient(135deg, var(--green-700), var(--green-500));
+  background: var(--green-700);
   color: #fff;
   border-radius: var(--radius);
   padding: 18px;
-  box-shadow: var(--shadow);
 }
 
 .progress-msg {
@@ -71,6 +70,7 @@
   gap: 10px;
   background: var(--card);
   border-radius: 14px;
+  border: var(--border);
   padding: 10px 12px;
   font-weight: 600;
 }

@@ -79,7 +79,7 @@ export default function TeamStats() {
         <button className="icon-btn" onClick={() => goBack('/help')} aria-label={t('back')}>
           ←
         </button>
-        <h1>📊 {t('teamStats')}</h1>
+        <h1>{t('teamStats')}</h1>
       </div>
       <p className="muted small">ID: {stats.deviceId || '–'}</p>
 
@@ -97,8 +97,8 @@ export default function TeamStats() {
       <p className="card" style={{ marginTop: 12 }}>
         {backendEnabled ? (
           <>
-            ☁️ {t('statSynced', { n: feedback.filter((f) => f.synced).length, total: feedback.length })}
-            <br />⏳ {t('statOutbox', { n: outbox })}
+            {t('statSynced', { n: feedback.filter((f) => f.synced).length, total: feedback.length })}
+            <br />{t('statOutbox', { n: outbox })}
             {(outbox > 0 || feedback.some((f) => !f.synced)) && (
               <button className="link-btn" onClick={() => void flush()}>
                 {t('retrySync')}
@@ -106,22 +106,22 @@ export default function TeamStats() {
             )}
           </>
         ) : (
-          <>📵 {t('syncOff')}</>
+          <>{t('syncOff')}</>
         )}
       </p>
 
       <div className="stack" style={{ marginTop: 16 }}>
         <button className="btn btn-big btn-primary" onClick={exportStats}>
-          ⬇️ {t('exportStats')}
+          {t('exportStats')}
         </button>
         <button className="btn btn-big" onClick={exportFeedbackCsv}>
-          ⬇️ {t('exportFeedbackCsv')}
+          {t('exportFeedbackCsv')}
         </button>
         <button className="btn btn-big" onClick={exportFeedbackJson}>
-          ⬇️ {t('exportFeedbackJson')}
+          {t('exportFeedbackJson')}
         </button>
         <button className="btn btn-big" style={{ borderColor: 'var(--red)', color: 'var(--red)', marginTop: 16 }} onClick={reset}>
-          🗑️ {t('resetAll')}
+          {t('resetAll')}
         </button>
       </div>
     </div>

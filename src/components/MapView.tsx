@@ -57,7 +57,7 @@ export default function MapView({ items, origin }: { items: MapItem[]; origin: L
             <Popup autoPanPaddingTopLeft={[56, 16]} autoPanPaddingBottomRight={[16, 16]}>
               <div className="map-popup">
                 <strong>{p(spot.name)}</strong>
-                {walk !== null && <div>🚶 {t('minWalk', { n: walk })}</div>}
+                {walk !== null && <div>{t('minWalk', { n: walk })}</div>}
                 <button className="btn btn-primary" onClick={() => navigate(`/spot/${spot.id}`)}>
                   {t('openSpot')} →
                 </button>

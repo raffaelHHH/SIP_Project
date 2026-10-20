@@ -42,7 +42,7 @@ export default function LoadMore({ remaining, onMore }: { remaining: number; onM
   if (remaining === 0) return null;
   return (
     <button ref={ref} className="btn btn-big" onClick={onMore}>
-      ⬇️ {t('showMore', { n: remaining })}
+      {t('showMore', { n: remaining })}
     </button>
   );
 }

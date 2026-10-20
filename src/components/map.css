@@ -4,7 +4,7 @@
   min-height: 320px;
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: var(--shadow);
+  border: var(--border);
 }
 
 .map-wrap .leaflet-container {
@@ -24,7 +24,7 @@
   border: 3px solid var(--green-700);
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
 .kaki-pin i {

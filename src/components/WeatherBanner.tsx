@@ -25,7 +25,7 @@ export default function WeatherBanner({ origin, onSuggest }: { origin: LatLng | 
       <span className="banner-text">{t(tip.key)}</span>
       {tip.suggest && (
         <button className="btn btn-primary" style={{ padding: '6px 14px' }} onClick={onSuggest}>
-          ☂️ {t('showSheltered')}
+          {t('showSheltered')}
         </button>
       )}
     </div>

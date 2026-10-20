@@ -37,10 +37,13 @@
   flex: 1;
 }
 
-.ob-hero {
-  font-size: 4rem;
-  text-align: center;
-  padding: 16px 0 4px;
+.ob-logo {
+  display: block;
+  margin: 24px auto 4px;
+}
+
+.ob-step > h1:first-child {
+  margin-top: 32px;
 }
 
 .ob-step h1 {

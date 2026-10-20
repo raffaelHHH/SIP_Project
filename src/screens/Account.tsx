@@ -74,7 +74,7 @@ function SignedOut() {
   return (
     <>
       <div className="card" style={{ marginBottom: 16 }}>
-        <strong>☁️ {t('accountGuestTitle')}</strong>
+        <strong>{t('accountGuestTitle')}</strong>
         <p className="muted" style={{ margin: '4px 0 0' }}>
           {t('accountGuestHint')}
         </p>
@@ -159,7 +159,7 @@ function NewPassword() {
         setBusy(false);
       }}
     >
-      <strong>🔑 {t('newPassword')}</strong>
+      <strong>{t('newPassword')}</strong>
       <PasswordInput value={password} onChange={setPassword} autoComplete="new-password" />
       <Message msg={msg} />
       <button className="btn btn-big btn-primary" type="submit" disabled={busy}>
@@ -192,7 +192,7 @@ function MySuggestions({ userId }: { userId: string }) {
 
   return (
     <>
-      <h2>📍 {t('mySuggestions')}</h2>
+      <h2>{t('mySuggestions')}</h2>
       {items && items.length > 0 && (
         <ul className="review-list">
           {items.map((s) => (
@@ -205,7 +205,7 @@ function MySuggestions({ userId }: { userId: string }) {
         </ul>
       )}
       <button className="btn" style={{ width: '100%' }} onClick={() => navigate('/suggest')}>
-        ➕ {t('suggestPlace')}
+        {t('suggestPlace')}
       </button>
     </>
   );
@@ -251,11 +251,11 @@ function SignedIn() {
 
       <MySuggestions userId={account.userId} />
 
-      <h2>⚙️ {t('settings')}</h2>
+      <h2>{t('settings')}</h2>
       <Message msg={msg} />
       <div className="stack">
         <button className="btn btn-big" onClick={doSignOut} disabled={busy}>
-          🚪 {t('signOut')}
+          {t('signOut')}
         </button>
         <button
           className="btn"
@@ -263,7 +263,7 @@ function SignedIn() {
           onClick={doDelete}
           disabled={busy}
         >
-          🗑️ {t('deleteAccount')}
+          {t('deleteAccount')}
         </button>
       </div>
     </>
@@ -279,7 +279,7 @@ export default function Account() {
         <button className="icon-btn" onClick={() => goBack('/help')} aria-label={t('back')}>
           ←
         </button>
-        <h1>👤 {t('account')}</h1>
+        <h1>{t('account')}</h1>
       </div>
       {!backendEnabled ? <p className="empty">{t('accountsOff')}</p> : account ? <SignedIn /> : <SignedOut />}
       {backendEnabled && <PrivacyNote />}
@@ -291,7 +291,7 @@ export function PrivacyNote() {
   const { t } = useT();
   return (
     <section className="card small" style={{ marginTop: 20 }}>
-      <strong>🔒 {t('privacyTitle')}</strong>
+      <strong>{t('privacyTitle')}</strong>
       <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
         <li>{t('privacyGuest')}</li>
         <li>{t('privacyAccount')}</li>

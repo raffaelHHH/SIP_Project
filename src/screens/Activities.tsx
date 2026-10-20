@@ -34,16 +34,16 @@ export default function Activities() {
   return (
     <div className="screen">
       <div className="topbar">
-        <h1>🧩 {t('navActivities')}</h1>
+        <h1>{t('navActivities')}</h1>
         <LangToggle />
       </div>
 
       <div className="segment" role="group" style={{ marginBottom: 8 }}>
         <button aria-pressed={ui.mine} onClick={() => setUi((u) => ({ ...u, mine: true }))}>
-          🧒 {t('forMyChild', { age: ageGroup })}
+          {t('forMyChild', { age: ageGroup })}
         </button>
         <button aria-pressed={!ui.mine} onClick={() => setUi((u) => ({ ...u, mine: false }))}>
-          👨‍👩‍👧‍👦 {t('allAges')}
+          {t('allAges')}
         </button>
       </div>
 

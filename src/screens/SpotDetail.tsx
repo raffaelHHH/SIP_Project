@@ -10,15 +10,6 @@ import { countGoThere, countSpotView, toggleSaved, useStore } from '../lib/store
 import { goBack } from '../router';
 import './detail.css';
 
-const heroColour: Record<string, string> = {
-  playground: '#ffe9a8',
-  park: '#cfe8c6',
-  garden: '#f8d5e0',
-  library: '#d6e4f5',
-  cc: '#f5e0c8',
-  event: '#e6d9f5',
-};
-
 export default function SpotDetail({ id }: { id: string }) {
   const { t, p } = useT();
   const spot = useSpot(id);
@@ -67,7 +58,7 @@ export default function SpotDetail({ id }: { id: string }) {
         </button>
       </div>
 
-      <div className="hero" style={{ background: heroColour[spot.category] }} aria-hidden="true">
+      <div className="hero" aria-hidden="true">
         <span>{categoryIcon[spot.category]}</span>
       </div>
 
@@ -76,12 +67,12 @@ export default function SpotDetail({ id }: { id: string }) {
         <span>
           {categoryIcon[spot.category]} {t(`cat_${spot.category}`)}
         </span>
-        {walk !== null && <span className="walk">🚶 {t('minWalk', { n: walk })}</span>}
+        {walk !== null && <span className="walk">{t('minWalk', { n: walk })}</span>}
         <span>
-          🕒 {t('hours')}: {hours}
+          {t('hours')}: {hours}
         </span>
       </div>
-      {spot.community ? <span className="sample-note">👪 {t('fromParents')}</span> : <SampleDataNote />}
+      {spot.community ? <span className="sample-note">{t('fromParents')}</span> : <SampleDataNote />}
 
       <a
         className="btn btn-big btn-primary"
@@ -91,7 +82,7 @@ export default function SpotDetail({ id }: { id: string }) {
         rel="noopener noreferrer"
         onClick={() => countGoThere(spot.id)}
       >
-        🧭 {t('goThere')}
+        {t('goThere')}
       </a>
 
       {spot.features.length > 0 && (
@@ -111,7 +102,7 @@ export default function SpotDetail({ id }: { id: string }) {
 
       {suggestions.length > 0 && (
         <>
-          <h2>🎯 {t('thingsToDo')}</h2>
+          <h2>{t('thingsToDo')}</h2>
           <div className="stack">
             {suggestions.map((a) => (
               <ActivityCard key={a.id} activity={a} />

@@ -19,7 +19,7 @@ export default function ActivityCard({ activity }: { activity: Activity }) {
           {p(activity.title)}
         </span>
         <span className="card-meta" style={{ display: 'block' }}>
-          ⏱ {t('minShort', { n: activity.minutes })} · 🎒 {activity.needs ? p(activity.needs) : t('needsNothing')}
+          {t('minShort', { n: activity.minutes })} · {activity.needs ? p(activity.needs) : t('needsNone')}
         </span>
         <span className="mini-badges">
           {activity.skills.map((s) => (

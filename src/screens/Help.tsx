@@ -47,7 +47,7 @@ export default function Help() {
   return (
     <div className="screen">
       <div className="topbar">
-        <h1>❓ {t('navHelp')}</h1>
+        <h1>{t('navHelp')}</h1>
         <LangToggle />
       </div>
 
@@ -86,7 +86,7 @@ export default function Help() {
         ))}
       </ol>
 
-      <h2>🤝 {t('freeResources')}</h2>
+      <h2>{t('freeResources')}</h2>
       <div className="stack">
         {resources.map((r) => (
           <a key={r.id} className="card card-btn" href={r.url} target="_blank" rel="noopener noreferrer">
@@ -108,10 +108,10 @@ export default function Help() {
         ))}
       </div>
 
-      <h2>⚙️ {t('settings')}</h2>
+      <h2>{t('settings')}</h2>
       <div className="card stack">
         <div>
-          <div className="setting-label">🌐 {t('language')}</div>
+          <div className="setting-label">{t('language')}</div>
           <div className="segment" role="group" aria-label={t('language')}>
             {languageOrder.map((l) => (
               <button key={l} aria-pressed={lang === l} onClick={() => setPrefs({ lang: l })}>
@@ -121,7 +121,7 @@ export default function Help() {
           </div>
         </div>
         <div>
-          <div className="setting-label">🧒 {t('childAge')}</div>
+          <div className="setting-label">{t('childAge')}</div>
           <div className="segment" role="group" aria-label={t('childAge')}>
             {ageGroups.map((g) => (
               <button key={g} aria-pressed={prefs.ageGroup === g} onClick={() => setPrefs({ ageGroup: g })}>
@@ -131,14 +131,14 @@ export default function Help() {
           </div>
         </div>
         <div>
-          <div className="setting-label">📍 {t('area')}</div>
+          <div className="setting-label">{t('area')}</div>
           <button className="btn" style={{ width: '100%' }} onClick={() => navigate('/area')}>
             {areaName} ▾
           </button>
         </div>
       </div>
 
-      <h2>💬 {t('feedback')}</h2>
+      <h2>{t('feedback')}</h2>
       <div className="card stack">
         {sent ? (
           <p className="thanks">{t('thanks')}</p>

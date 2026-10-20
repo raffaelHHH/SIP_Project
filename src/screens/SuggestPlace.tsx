@@ -32,7 +32,7 @@ export default function SuggestPlace() {
       <button className="icon-btn" onClick={() => goBack()} aria-label={t('back')}>
         ←
       </button>
-      <h1>➕ {t('suggestPlace')}</h1>
+      <h1>{t('suggestPlace')}</h1>
     </div>
   );
 
@@ -51,7 +51,7 @@ export default function SuggestPlace() {
         {header}
         <p className="muted">{t('suggestHint')}</p>
         <button className="btn btn-big btn-primary" onClick={() => navigate('/account')}>
-          👤 {t('suggestSignIn')}
+          {t('suggestSignIn')}
         </button>
       </div>
     );
@@ -62,12 +62,9 @@ export default function SuggestPlace() {
       <div className="screen">
         {header}
         <div className="card" style={{ textAlign: 'center', padding: 24 }}>
-          <div style={{ fontSize: '3rem' }} aria-hidden="true">
-            🙏
-          </div>
           <p style={{ fontWeight: 700, fontSize: '1.15rem' }}>{t('suggestThanks')}</p>
           <button className="btn btn-primary" onClick={() => navigate('/account')}>
-            📍 {t('mySuggestions')}
+            {t('mySuggestions')}
           </button>
         </div>
       </div>
@@ -104,7 +101,7 @@ export default function SuggestPlace() {
     <div className="screen">
       {header}
       <div className="stack">
-        <p className="form-msg">👆 {t('tapMap')}</p>
+        <p className="form-msg">{t('tapMap')}</p>
         <Suspense fallback={<div className="empty">{t('loadingMap')}</div>}>
           <PinPicker value={pos} onChange={setPos} />
         </Suspense>

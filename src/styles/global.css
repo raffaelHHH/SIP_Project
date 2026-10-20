@@ -16,7 +16,7 @@
   --radius: 18px;
   --tap: 48px;
   --nav-h: 68px;
-  --shadow: 0 2px 6px rgba(30, 60, 30, 0.12);
+  --border: 1.5px solid var(--line);
   font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans SC', 'PingFang SC', sans-serif;
   font-size: 18px;
   line-height: 1.4;
@@ -101,6 +101,16 @@ h2 {
   margin-bottom: 8px;
 }
 
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wordmark img {
+  border-radius: 8px;
+}
+
 .topbar h1 {
   font-size: 1.35rem;
   flex: 1;
@@ -139,7 +149,6 @@ h2 {
   background: var(--card);
   border-top: 1px solid var(--line);
   padding-bottom: env(safe-area-inset-bottom);
-  box-shadow: 0 -2px 8px rgba(30, 60, 30, 0.08);
 }
 
 .bottom-nav-inner {
@@ -229,7 +238,7 @@ h2 {
   border-radius: 50%;
   border: 0;
   background: var(--card);
-  box-shadow: var(--shadow);
+  border: var(--border);
   font-size: 1.4rem;
   display: inline-flex;
   align-items: center;
@@ -308,22 +317,18 @@ h2 {
 
 .segment button[aria-pressed='true'] {
   background: var(--card);
-  box-shadow: var(--shadow);
 }
 
 /* ---------- Cards ---------- */
 .card {
   background: var(--card);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border: var(--border);
   padding: 14px;
 }
 
 .card-btn {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 100px;
   width: 100%;
-  border: 0;
   text-align: left;
   display: flex;
   gap: 14px;
@@ -464,7 +469,6 @@ h2 {
   font-weight: 700;
   font-size: 1.1rem;
   z-index: 1100;
-  box-shadow: var(--shadow);
   animation: pop 0.25s ease-out;
 }
 

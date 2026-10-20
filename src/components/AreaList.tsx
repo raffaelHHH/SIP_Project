@@ -12,7 +12,7 @@ export default function AreaList({ selected, onPick }: { selected?: string | nul
           aria-pressed={selected === n.id}
           onClick={() => onPick(n.id)}
         >
-          🏘️ {p(n.name)}
+          {p(n.name)}
         </button>
       ))}
     </div>

@@ -77,25 +77,28 @@ export default function Nearby() {
   return (
     <div className="screen">
       <div className="topbar">
-        <h1>🌳 {t('appName')}</h1>
+        <h1 className="wordmark">
+          <img src={`${import.meta.env.BASE_URL}favicon.svg`} alt="" width={30} height={30} />
+          {t('appName')}
+        </h1>
         <LangToggle />
       </div>
 
       {areaLabel ? (
         <button className="btn" style={{ marginBottom: 12 }} onClick={() => navigate('/area')}>
-          📍 {areaLabel} <span aria-hidden="true">▾</span>
+          {areaLabel} <span aria-hidden="true">▾</span>
           <span className="visually-hidden">{t('changeArea')}</span>
         </button>
       ) : (
         <button className="btn btn-big btn-yellow" style={{ marginBottom: 12 }} onClick={() => navigate('/area')}>
-          📍 {t('setAreaPrompt')}
+          {t('setAreaPrompt')}
         </button>
       )}
 
       <WeatherBanner origin={origin} onSuggest={() => set({ sheltered: true })} />
 
       <div style={{ marginBottom: 8 }}>
-        <div style={{ fontWeight: 700, marginBottom: 4 }}>⏱ {t('iHave')}</div>
+        <div style={{ fontWeight: 700, marginBottom: 4 }}>{t('iHave')}</div>
         <div className="segment nowrap" role="group" aria-label={t('iHave')}>
           {([15, 30, 60, null] as Minutes[]).map((m) => (
             <button key={m ?? 'any'} aria-pressed={ui.minutes === m} onClick={() => set({ minutes: m })}>
@@ -121,7 +124,7 @@ export default function Nearby() {
 
       {quickActivities.length > 0 && (
         <section>
-          <h2>✨ {t('tryThese', { n: ui.minutes! })}</h2>
+          <h2>{t('tryThese', { n: ui.minutes! })}</h2>
           <div className="chips" style={{ alignItems: 'stretch' }}>
             {quickActivities.map((a) => (
               <div key={a.id} className="quick-card">
@@ -135,10 +138,10 @@ export default function Nearby() {
       <div className="row" style={{ justifyContent: 'space-between', margin: '12px 0', flexWrap: 'wrap' }}>
         <div className="segment" role="group" style={{ minWidth: 180 }}>
           <button aria-pressed={ui.view === 'list'} onClick={() => set({ view: 'list' })}>
-            ☰ {t('listView')}
+            {t('listView')}
           </button>
           <button aria-pressed={ui.view === 'map'} onClick={() => set({ view: 'map' })}>
-            🗺️ {t('mapView')}
+            {t('mapView')}
           </button>
         </div>
         <SampleDataNote />
@@ -151,7 +154,7 @@ export default function Nearby() {
           <p>{t('noSpots')}</p>
           {hasFilters && (
             <button className="btn" onClick={() => set({ cats: [], sheltered: false, toilet: false })}>
-              ✖ {t('clearFilters')}
+              {t('clearFilters')}
             </button>
           )}
         </div>

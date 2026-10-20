@@ -95,9 +95,9 @@ export default function SpotReviews({ spotId }: { spotId: string }) {
 
   return (
     <section>
-      <h2>💬 {t('tipsTitle')}</h2>
+      <h2>{t('tipsTitle')}</h2>
 
-      {failed && !reviews && <p className="muted">📶 {t('tipsOffline')}</p>}
+      {failed && !reviews && <p className="muted">{t('tipsOffline')}</p>}
 
       {reviews && (
         <>
@@ -136,7 +136,7 @@ export default function SpotReviews({ spotId }: { spotId: string }) {
 
       {!account ? (
         <button className="btn" style={{ width: '100%' }} onClick={() => navigate('/account')}>
-          👤 {t('signInToTip')}
+          {t('signInToTip')}
         </button>
       ) : editing ? (
         <div className="card stack">
