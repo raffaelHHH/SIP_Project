@@ -6,8 +6,10 @@ Prototype for SIT USI2001 (Social Innovation Project).
 
 > **How might we** empower low-income parents with cost-free, community-based resources to engage their children in outdoor learning, mitigating the developmental impacts of living in compact rental housing?
 
-- No login, no accounts, no backend, no API keys.
-- Works on a 360px screen and slow 3G. Installs to the home screen, and works offline after the first visit.
+- Works without an account. Optional accounts back up progress across phones.
+- Parents can suggest new places and leave tips and ratings. Your team approves new places.
+- Everything (accounts, feedback, usage, pins, tips) is stored in a free **Supabase** (PostgreSQL) database.
+- Works on a 360px screen and slow 3G. Installs to the home screen, and works offline after the first visit. Changes made offline are sent when the phone reconnects.
 - English and 简体中文. Malay and Tamil can be added without coding (see [Adding a language](#adding-a-language)).
 
 ---
@@ -31,6 +33,70 @@ Other commands:
 |---|---|
 | `npm run build` | Type-checks and builds the app into `dist/` |
 | `npm run preview` | Serves the built app (test offline mode here) |
+
+### Connect the database
+
+Without a database the app still runs, but everything stays on the phone and the account and "suggest a place" features are hidden. To turn them on, follow [Database & accounts](#database--accounts), then:
+
+```bash
+cp .env.example .env.local    # then paste your Supabase URL and anon key into .env.local
+npm run dev
+```
+
+---
+
+## Database & accounts
+
+The app uses [Supabase](https://supabase.com), a free hosted **PostgreSQL** database with built-in logins.
+
+### One-time setup (about 10 minutes)
+1. Sign up at [supabase.com](https://supabase.com) and click **New project**. Pick region **Singapore**, and save the database password somewhere safe.
+2. Open **SQL Editor → New query**, paste the whole of [`supabase/schema.sql`](supabase/schema.sql), and click **Run**. This creates all the tables and security rules.
+3. Open **Project Settings → API** and copy the **Project URL** and the **anon / publishable key**. The anon key is safe to put in the app, because the security rules protect the data. **Never** put the `service_role` / secret key in the app.
+4. Paste both into `.env.local` (see `.env.example`), and into your hosting settings:
+   - **Vercel:** Project → Settings → Environment Variables → add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, then redeploy.
+   - **GitHub Pages:** repo Settings → Secrets and variables → Actions → **Variables** tab → add the same two.
+5. In Supabase, open **Authentication → URL Configuration**:
+   - **Site URL:** your live app address, e.g. `https://kaki-outdoors.vercel.app`
+   - **Redirect URLs:** add your live address and `http://localhost:5173`
+
+   These make the "confirm email" and "reset password" links open your app.
+6. Optional, for user testing: under **Authentication → Sign In / Providers → Email**, turn off **Confirm email** so parents can sign in straight away. Supabase's built-in email sender only sends a few emails per hour, so for real use, set up your own email sender (custom SMTP).
+
+### What's stored where
+
+| Table | What | Who can see it |
+|---|---|---|
+| `profiles` | Name (optional), child age group, area, language, consent time | Only that parent (and your team) |
+| `saved_items` | ♡ saved places and activities | Only that parent |
+| `activity_log` | "We did this!" with date | Only that parent |
+| `place_suggestions` | Pins parents add (name, type, features, location, status) | Everyone once **approved**; the parent who sent it sees it while pending |
+| `place_reviews` | Star rating and short tip per place | Everyone (unless hidden) |
+| `feedback` | Smiley rating and comment from Help (guests too) | Only your team |
+| `usage_events` | Anonymous app opens, places viewed, "Go there" taps, activities done | Only your team |
+
+Your team sees and edits everything in the Supabase dashboard (**Table Editor**). Parents' phones can only reach their own rows. The rules are in `supabase/schema.sql` and were tested with 45 checks.
+
+### Day-to-day team tasks
+- **Approve a suggested place:** Table Editor → `place_suggestions` → change `status` from `pending` to `approved` (or `rejected`). Approved places appear on everyone's map next time they open the app, marked "Added by parents".
+- **Hide an unkind tip:** Table Editor → `place_reviews` → tick `hidden`.
+- **Export data for the report:** open any table and click **Export → CSV**.
+- **Ready-made reports:** in the SQL Editor, run any of:
+  ```sql
+  select * from reports.weekly_summary;      -- active phones/accounts, views, Go there taps, activities per week
+  select * from reports.return_visits;       -- days used per phone
+  select * from reports.popular_activities;
+  select * from reports.popular_spots;
+  select * from reports.feedback_summary;
+  select * from reports.pending_places;      -- suggestions waiting for approval
+  ```
+
+### Privacy (PDPA)
+- **Guests:** only anonymous counts and feedback are sent, linked to a random phone code. No name and no location are sent.
+- **Accounts:** created only after the parent ticks a consent box. The time they agreed is saved in `profiles.consent_at`.
+- **Deleting:** parents can delete their account in the app (**Help → Account → Delete my account**). This removes their profile, saved items, log, pins and tips. Their feedback and usage counts stay, but become anonymous.
+- **GPS:** the phone's location is never sent. Only the chosen area name is stored.
+- **Ethics:** check with your module supervisor about ethics approval before collecting data from real parents.
 
 ---
 
@@ -131,7 +197,7 @@ Every text field is written like this: `{ "en": "English text", "zh": "中文" }
 
 ## Impact measurement (for the project report)
 
-The app counts the following **anonymously, on the phone only** (`localStorage`). Nothing is sent anywhere.
+With the database connected, all of this lands in Supabase, and the `reports.*` queries above summarise it across every phone. The phone also keeps its own counts, so you can still check a single phone on the hidden Team stats page:
 
 - places viewed, "Go there" taps, activities completed ("We did this!")
 - app opens, days opened, return visits (days opened − 1)
@@ -142,7 +208,7 @@ The app counts the following **anonymously, on the phone only** (`localStorage`)
 - `kaki-stats-<id>-<date>.csv`: one row per phone. Combine the rows from all test phones in Excel or Google Sheets.
 - `kaki-feedback-<id>-<date>.csv` / `.json`: all feedback entries.
 
-`<id>` is a random code made on each phone. It lets you tell test phones apart without collecting anything personal. The same page has a **Reset** button to clear a phone between test sessions.
+`<id>` is a random code made on each phone. It lets you tell test phones apart without collecting anything personal. Team stats also shows how many changes are still waiting to be sent to the database. The same page has a **Reset** button to clear a phone between test sessions.
 
 ---
 
@@ -156,6 +222,7 @@ The app counts the following **anonymously, on the phone only** (`localStorage`)
 | Weather tip | Uses the free NEA 2-hour forecast from data.gov.sg, which needs no key. If rain is expected near the user, it suggests sheltered places. When offline, it uses a time-of-day rule instead (hot afternoon, dusk and so on). |
 | Map | Leaflet with OpenStreetMap tiles. It only downloads when someone taps **Map**. Tiles already viewed are cached for offline use (max 400). |
 | Offline | A service worker (vite-plugin-pwa) caches the app and all data on the first visit. |
+| Sync | Every change is saved on the phone first and added to a queue (the "outbox"). The queue is sent to Supabase when there's internet. When a guest signs in, their progress is merged into their account. Signing out removes personal data from the phone, for shared family phones. |
 
 ### Project structure
 ```
@@ -165,10 +232,12 @@ src/
   data/*.json                    places, activities, areas, links  ← edit these
   i18n/en.ts, zh.ts, index.ts    all UI text
   lib/                           store (localStorage), geo, weather, progress, CSV
+  lib/backend.ts, sync.ts, auth.ts   database connection, offline sync queue, accounts
   hooks/useOrigin.ts             location / chosen area
   components/                    cards, nav, map, banners
   screens/                       one file per screen
 public/                          icons
+supabase/schema.sql              database tables + security rules  ← run once in Supabase
 ```
 
 ---
