@@ -3,7 +3,8 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 // Set these in .env.local (and in Vercel / GitHub settings). See README → "Database & accounts".
 // Without them the app still works fully, keeping everything on the phone.
 const URL = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
+// Either name works: Supabase now calls it the "publishable" key (sb_publishable_…), older projects "anon".
+const KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) as string | undefined;
 
 export const backendEnabled = Boolean(URL && KEY);
 

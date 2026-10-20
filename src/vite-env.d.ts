@@ -7,4 +7,6 @@ interface ImportMetaEnv {
   readonly VITE_SUPABASE_URL?: string;
   /** Supabase "anon" / publishable key. Safe to put in the app; the database security rules protect data. */
   readonly VITE_SUPABASE_ANON_KEY?: string;
+  /** Same as VITE_SUPABASE_ANON_KEY, under Supabase's newer name. Either works. */
+  readonly VITE_SUPABASE_PUBLISHABLE_KEY?: string;
 }
