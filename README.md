@@ -7,8 +7,8 @@ Prototype for SIT USI2001 (Social Innovation Project).
 > **How might we** empower low-income parents with cost-free, community-based resources to engage their children in outdoor learning, mitigating the developmental impacts of living in compact rental housing?
 
 - Works without an account. Optional accounts back up progress across phones.
-- Parents can suggest new places and leave tips and ratings. Your team approves new places.
-- Everything (accounts, feedback, usage, pins, tips) is stored in a free **Supabase** (PostgreSQL) database.
+- Parents can suggest new places and leave tips and ratings. The team approves new places.
+- Accounts, feedback, usage, pins and tips are stored in **Supabase** (PostgreSQL).
 - Works on a 360px screen and slow 3G. Installs to the home screen, and works offline after the first visit. Changes made offline are sent when the phone reconnects.
 - English and 简体中文. Malay and Tamil can be added without coding (see [Adding a language](#adding-a-language)).
 
@@ -18,69 +18,48 @@ Prototype for SIT USI2001 (Social Innovation Project).
 
 You need [Node.js](https://nodejs.org) 20 or newer.
 
-```bash
-npm install
-npm run dev
-```
+1. Create a file called `.env.local` in the project folder with:
+   ```
+   VITE_SUPABASE_URL=https://psoqlaelbbkcanaxlcea.supabase.co
+   VITE_SUPABASE_ANON_KEY=sb_publishable_a46RCN2Av_NduOUjc346rw_ZeRNWa7Q
+   ```
+   This is the public key, which is safe to share. Never use the **secret** / `service_role` key in the app. Without this file the app still runs, but accounts and "Suggest a place" are hidden.
+2. Install and start:
+   ```bash
+   npm install
+   npm run dev
+   ```
+3. Open http://localhost:5173.
 
-Open the address it prints (usually http://localhost:5173). To try it on your phone, connect it to the same Wi-Fi and run `npm run dev -- --host`, then open the "Network" address on your phone.
-
-> Note: location ("Use my location") only works on `localhost` or an `https://` address. On a Wi-Fi IP address the app falls back to "Choose your area".
-
-Other commands:
+**On your phone:** connect to the same Wi-Fi, run `npm run dev -- --host`, and open the "Network" address. "Use my location" only works on `localhost` or `https://`, so on Wi-Fi the app asks you to choose an area.
 
 | Command | What it does |
 |---|---|
+| `npm run dev` | Runs the app locally. It reloads as you edit. |
 | `npm run build` | Type-checks and builds the app into `dist/` |
-| `npm run preview` | Serves the built app (test offline mode here) |
-
-### Connect the database
-
-Without a database the app still runs, but everything stays on the phone and the account and "suggest a place" features are hidden. To turn them on, follow [Database & accounts](#database--accounts), then:
-
-```bash
-cp .env.example .env.local    # then paste your Supabase URL and anon key into .env.local
-npm run dev
-```
+| `npm run preview` | Serves the built app. Use it to test offline mode. |
 
 ---
 
-## Database & accounts
+## Deploying
 
-The app uses [Supabase](https://supabase.com), a free hosted **PostgreSQL** database with built-in logins.
+The live site is on **Vercel**, connected to this GitHub repo.
 
-### One-time setup (about 10 minutes)
-1. Sign up at [supabase.com](https://supabase.com) and click **New project**. Pick region **Singapore**, and save the database password somewhere safe.
-2. Open **SQL Editor → New query**, paste the whole of [`supabase/schema.sql`](supabase/schema.sql), and click **Run**. This creates all the tables and security rules.
-3. Open **Project Settings → API** and copy the **Project URL** and the **anon / publishable key**. The anon key is safe to put in the app, because the security rules protect the data. **Never** put the `service_role` / secret key in the app.
-4. Paste both into `.env.local` (see `.env.example`), and into your hosting settings:
-   - **Vercel:** Project → Settings → Environment Variables → add `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, then redeploy.
-   - **GitHub Pages:** repo Settings → Secrets and variables → Actions → **Variables** tab → add the same two.
-5. In Supabase, open **Authentication → URL Configuration**:
-   - **Site URL:** your live app address, e.g. `https://kaki-outdoors.vercel.app`
-   - **Redirect URLs:** add your live address and `http://localhost:5173`
+- **Pushing to `main`** updates the live site automatically within a minute or two.
+- **Pushing other branches** creates a preview link (see the Vercel dashboard → Deployments).
+- The **Build check** on GitHub runs on every push. A ❌ means the change breaks the build.
+- **Changing an environment variable** in Vercel (Settings → Environment Variables) does nothing until you **redeploy** (Deployments → ⋯ → Redeploy).
+- **After an update,** phones may show the old version once, because the app keeps an offline copy. Reopening the app (or using an incognito window) shows the new one.
 
-   These make the "confirm email" and "reset password" links open your app.
-6. Optional, for user testing: under **Authentication → Sign In / Providers → Email**, turn off **Confirm email** so parents can sign in straight away. Supabase's built-in email sender only sends a few emails per hour, so for real use, set up your own email sender (custom SMTP).
+---
 
-### What's stored where
+## Team tasks (Supabase dashboard)
 
-| Table | What | Who can see it |
-|---|---|---|
-| `profiles` | Name (optional), child age group, area, language, consent time | Only that parent (and your team) |
-| `saved_items` | ♡ saved places and activities | Only that parent |
-| `activity_log` | "We did this!" with date | Only that parent |
-| `place_suggestions` | Pins parents add (name, type, features, location, status) | Everyone once **approved**; the parent who sent it sees it while pending |
-| `place_reviews` | Star rating and short tip per place | Everyone (unless hidden) |
-| `feedback` | Smiley rating and comment from Help (guests too) | Only your team |
-| `usage_events` | Anonymous app opens, places viewed, "Go there" taps, activities done | Only your team |
+Everything is in the Supabase project dashboard. Parents' phones can only reach their own data, but the dashboard shows everything.
 
-Your team sees and edits everything in the Supabase dashboard (**Table Editor**). Parents' phones can only reach their own rows. The rules are in `supabase/schema.sql` and were tested with 45 checks.
-
-### Day-to-day team tasks
 - **Approve a suggested place:** Table Editor → `place_suggestions` → change `status` from `pending` to `approved` (or `rejected`). Approved places appear on everyone's map next time they open the app, marked "Added by parents".
 - **Hide an unkind tip:** Table Editor → `place_reviews` → tick `hidden`.
-- **Export data for the report:** open any table and click **Export → CSV**.
+- **Export data for the report:** open any table → **Export → CSV**.
 - **Ready-made reports:** in the SQL Editor, run any of:
   ```sql
   select * from reports.weekly_summary;      -- active phones/accounts, views, Go there taps, activities per week
@@ -90,39 +69,37 @@ Your team sees and edits everything in the Supabase dashboard (**Table Editor**)
   select * from reports.feedback_summary;
   select * from reports.pending_places;      -- suggestions waiting for approval
   ```
+- **Clear test data** before a new round of user testing:
+  ```sql
+  truncate public.usage_events, public.feedback;
+  ```
+
+### What's stored where
+
+| Table | What | Who can see it |
+|---|---|---|
+| `profiles` | Name (optional), child age group, area, language, consent time | Only that parent (and the team) |
+| `saved_items` | ♡ saved places and activities | Only that parent |
+| `activity_log` | "We did this!" with date | Only that parent |
+| `place_suggestions` | Pins parents add (name, type, features, location, status) | Everyone once **approved**; the parent who sent it sees it while pending |
+| `place_reviews` | Star rating and short tip per place | Everyone (unless hidden) |
+| `feedback` | Smiley rating and comment from Help (guests too) | Only the team |
+| `usage_events` | Anonymous app opens, places viewed, "Go there" taps, activities done | Only the team |
+
+**Changing the database:** [`supabase/schema.sql`](supabase/schema.sql) is the full definition of the tables, the security rules and the permissions. If you change the database, update this file too, and run only the change (not the whole file) in the SQL Editor.
 
 ### Privacy (PDPA)
 - **Guests:** only anonymous counts and feedback are sent, linked to a random phone code. No name and no location are sent.
 - **Accounts:** created only after the parent ticks a consent box. The time they agreed is saved in `profiles.consent_at`.
 - **Deleting:** parents can delete their account in the app (**Help → Account → Delete my account**). This removes their profile, saved items, log, pins and tips. Their feedback and usage counts stay, but become anonymous.
 - **GPS:** the phone's location is never sent. Only the chosen area name is stored.
-- **Ethics:** check with your module supervisor about ethics approval before collecting data from real parents.
-
----
-
-## Deploy for free
-
-### Option A: Vercel (easiest)
-1. Push this repo to GitHub.
-2. Go to [vercel.com](https://vercel.com), sign in with GitHub, and click **Add New → Project**.
-3. Pick this repo. Vercel detects Vite; keep the defaults and click **Deploy**.
-
-You get an `https://…vercel.app` link. Every push to `main` redeploys.
-
-### Option B: GitHub Pages
-1. Push this repo to GitHub.
-2. In the repo, open **Settings → Pages** and set **Source** to **GitHub Actions**.
-3. Go to the **Actions** tab → **Deploy to GitHub Pages** → **Run workflow**. It builds and publishes the app to `https://<user>.github.io/<repo-name>/`. It's manual-only because the team hosts on Vercel. To deploy on every push instead, add `push: branches: [main]` under `on:` in `.github/workflows/deploy-pages.yml`.
-
-Separately, the **Build check** workflow runs on every push and shows a ❌ on GitHub if a change breaks the build.
-
-The app uses `#/` URLs, so page refreshes work on GitHub Pages with no extra setup.
+- **Ethics:** make sure data collection from real parents is covered by your ethics approval.
 
 ---
 
 ## Editing the data (no coding needed)
 
-All content lives in `src/data/`. Edit the JSON files in any text editor (or on github.com with the ✏️ button). Keep the commas and quotes exactly as they are. If the app stops building, paste the file into [jsonlint.com](https://jsonlint.com) to find the mistake.
+The team's places and activities live in `src/data/`. Edit the JSON files in any text editor (or on github.com with the ✏️ button), then push to `main`. Keep the commas and quotes exactly as they are. If the app stops building, paste the file into [jsonlint.com](https://jsonlint.com) to find the mistake.
 
 Every text field is written like this: `{ "en": "English text", "zh": "中文" }`. Only `en` is required. If a language is missing, the app shows English.
 
@@ -144,13 +121,15 @@ Every text field is written like this: `{ "en": "English text", "zh": "中文" }
 
 | Field | Meaning |
 |---|---|
-| `id` | Unique, lowercase, dashes, no spaces. Never change it after launch, because saved items use it. |
+| `id` | Unique, lowercase, dashes, no spaces. Never change it once in use, because saved items and tips refer to it. |
 | `category` | One of: `playground`, `park`, `garden`, `library`, `cc` (Community Club), `event` |
 | `neighbourhood` | An `id` from `neighbourhoods.json` |
 | `lat`, `lng` | Coordinates. In Google Maps, right-click the place and click the numbers to copy them. |
 | `hours` | `"24h"`, `"check"` (shows "Check on site"), or your own text, e.g. `{ "en": "10am–9pm", "zh": "上午10点–晚上9点" }` |
 | `features` | Any of: `sheltered`, `toilet`, `lit` (lit at night), `awayFromRoad`, `fenced` (fenced play area), `water` (water point), `wheelchair` |
 | `verified` | Set to `true` once a team member has checked the place in person |
+
+Places that parents suggest don't go in this file. They're approved in Supabase (see [Team tasks](#team-tasks-supabase-dashboard)).
 
 ### `activities.json`: activity library
 
@@ -176,7 +155,7 @@ Every text field is written like this: `{ "en": "English text", "zh": "中文" }
 | `ages` | Any of `"2-4"`, `"5-8"`, `"9-12"` |
 | `minutes` | How long it takes. Used by the "I have 15 / 30 / 60 min" selector. |
 | `skills` | Any of `motor`, `thinking`, `nature`, `social`, `language` |
-| `needs` | `null` means "Nothing!". Otherwise use text, e.g. `{ "en": "Chalk", "zh": "粉笔" }` |
+| `needs` | `null` means no equipment. Otherwise use text, e.g. `{ "en": "Chalk", "zh": "粉笔" }` |
 | `places` | Spot categories where it works, or `"any"` |
 | `steps` | 3–4 steps, each with one emoji and one short line |
 
@@ -199,18 +178,18 @@ Every text field is written like this: `{ "en": "English text", "zh": "中文" }
 
 ## Impact measurement (for the project report)
 
-With the database connected, all of this lands in Supabase, and the `reports.*` queries above summarise it across every phone. The phone also keeps its own counts, so you can still check a single phone on the hidden Team stats page:
+Usage across all phones is in Supabase (see the `reports.*` queries above). Each phone also keeps its own counts, which you can check without the dashboard:
 
 - places viewed, "Go there" taps, activities completed ("We did this!")
 - app opens, days opened, return visits (days opened − 1)
 - feedback ratings and comments from the Help screen
 
-**To see the counts:** go to **Help** and tap the **version number 5 times quickly**. This opens **Team stats**, which has buttons to export:
+**To see the counts:** go to **Help** and tap the **version number 5 times quickly**. This opens **Team stats**, which can export:
 
-- `kaki-stats-<id>-<date>.csv`: one row per phone. Combine the rows from all test phones in Excel or Google Sheets.
-- `kaki-feedback-<id>-<date>.csv` / `.json`: all feedback entries.
+- `kaki-stats-<id>-<date>.csv`: one row per phone
+- `kaki-feedback-<id>-<date>.csv` / `.json`: all feedback entries
 
-`<id>` is a random code made on each phone. It lets you tell test phones apart without collecting anything personal. Team stats also shows how many changes are still waiting to be sent to the database. The same page has a **Reset** button to clear a phone between test sessions.
+`<id>` is a random code made on each phone. It lets you tell test phones apart without collecting anything personal. Team stats also shows how many changes are still waiting to be sent to the database. The **Reset** button clears a phone between test sessions.
 
 ---
 
@@ -229,23 +208,27 @@ With the database connected, all of this lands in Supabase, and the `reports.*` 
 ### Project structure
 ```
 src/
-  App.tsx, main.tsx, router.ts   app shell, bottom nav, #/ routes
-  types.ts                       data types
-  data/*.json                    places, activities, areas, links  ← edit these
-  i18n/en.ts, zh.ts, index.ts    all UI text
-  lib/                           store (localStorage), geo, weather, progress, CSV
+  App.tsx, main.tsx, router.ts       app shell, bottom nav, #/ routes
+  types.ts                           data types
+  data/*.json                        places, activities, areas, links  ← edit these
+  i18n/en.ts, zh.ts, index.ts        all UI text
+  lib/                               store (localStorage), geo, weather, progress, CSV
   lib/backend.ts, sync.ts, auth.ts   database connection, offline sync queue, accounts
-  hooks/useOrigin.ts             location / chosen area
-  components/                    cards, nav, map, banners
-  screens/                       one file per screen
-public/                          icons
-supabase/schema.sql              database tables + security rules  ← run once in Supabase
+  hooks/useOrigin.ts                 location / chosen area
+  components/                        cards, nav, map, banners
+  screens/                           one file per screen
+public/                              icons
+supabase/schema.sql                  database tables, security rules, permissions, reports
 ```
 
 ---
 
-## Limitations and before user testing
+## Before testing with parents
 
-- **Sample data.** Places are real and well-known, but coordinates are approximate and features (toilets, shelter and so on) are unverified (`"verified": false`). Please check them before testing with parents. The app shows a "Sample data" note.
-- **Translations.** The Chinese text needs a check by a native speaker.
-- **Map tiles.** These come from the public OpenStreetMap server, which is fine for a prototype and user testing. For a real launch with many users, switch to a tile provider that allows that level of use.
+- **Places:** coordinates and features in `spots.json` are approximate and unverified. Check each place, then set `"verified": true`. The app shows a "Sample data" note until then.
+- **Translations:** have a native speaker check the Chinese text.
+
+## Before a public launch
+
+- **Email:** turn **Confirm email** back on (Supabase → Authentication → Sign In / Providers → Email), and set up your own email sender (Authentication → Emails → SMTP Settings). The built-in sender only sends a few emails per hour.
+- **Map tiles:** the public OpenStreetMap server is fine for a prototype and testing. For many users, switch to a tile provider that allows that level of use.

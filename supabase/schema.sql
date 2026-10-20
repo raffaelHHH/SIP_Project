@@ -194,7 +194,7 @@ revoke execute on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;
 
 -- ---------- 8b. Table permissions for the app -----------------------
--- (Same as supabase/grants.sql.) Newer Supabase projects don't grant
+-- Newer Supabase projects don't grant
 -- these automatically. RLS above still limits which rows are visible.
 grant usage on schema public to anon, authenticated;
 
