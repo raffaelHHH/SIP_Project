@@ -238,14 +238,9 @@ function SignedIn() {
     <>
       {recovering && <NewPassword />}
       <div className="card stack">
-        <div className="row">
-          <span style={{ fontSize: '2rem' }} aria-hidden="true">
-            👤
-          </span>
-          <strong style={{ overflowWrap: 'anywhere' }}>{t('signedInAs', { email: account.email })}</strong>
-        </div>
+        <strong style={{ overflowWrap: 'anywhere' }}>{t('signedInAs', { email: account.email })}</strong>
         <p style={{ margin: 0 }} className={pending ? '' : 'walk'}>
-          {pending ? `⏳ ${t('syncPending', { n: pending })}` : `✅ ${t('syncedOk')}`}
+          {pending ? t('syncPending', { n: pending }) : t('syncedOk')}
         </p>
       </div>
 

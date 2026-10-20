@@ -88,9 +88,10 @@ export async function flush(): Promise<void> {
       done.push(o.id);
     }
 
-    // 3. Feedback (guests too).
+    // 3. Feedback (guests too). A plain insert: nobody may read the feedback table, so we can't
+    // use upsert. A resend after a dropped connection fails as a duplicate (23505), which counts as sent.
     for (const f of s.feedback.filter((x) => !x.synced)) {
-      const { error } = await sb.from('feedback').upsert(
+      const { error } = await sb.from('feedback').insert(
         {
           id: f.id,
           user_id: owner(f.userId),
@@ -102,7 +103,6 @@ export async function flush(): Promise<void> {
           app_version: __APP_VERSION__,
           created_at: f.date,
         },
-        { onConflict: 'id', ignoreDuplicates: true },
       );
       if (error && !isPermanentError(error)) throw error;
       feedbackDone.push(f.id);
